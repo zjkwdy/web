@@ -12,4 +12,41 @@
         <tag>公告</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Debian环境搭建nginx+php+mysql环境</title>
+    <url>/2021/01/24/Debian%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BAnginx-php-mysql%E7%8E%AF%E5%A2%83/</url>
+    <content><![CDATA[<p>首先切换到rootBash</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">su -</span><br></pre></td></tr></table></figure>
+<p>然后检查更新Bash</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">apt update &amp;&amp; apt upgrade -y</span><br></pre></td></tr></table></figure>
+<p>安装程序包：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">apt install nginx php-fpm php-xml php-mysql default-mysql-server default-mysql-client vim -y</span><br></pre></td></tr></table></figure>
+<p>tips:如果没有找到程序包，可以使用</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">apt search 预期包名</span><br></pre></td></tr></table></figure>
+<p>(e.g. mysql)</p>
+<p>完事之后，</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">vim &#x2F;etc&#x2F;nginx&#x2F;sites-enabled&#x2F;default</span><br></pre></td></tr></table></figure>
+<p>按i进入编辑模式，修改下面几处</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">        #端口设置，不用动</span><br><span class="line">        listen 80 default_server;</span><br><span class="line">        listen [::]:80 default_server;</span><br><span class="line">        #网站根目录，我没习惯动。</span><br><span class="line">        root &#x2F;var&#x2F;www&#x2F;html;</span><br><span class="line">        #起始页名，在里面加一个index.php     </span><br><span class="line">        index index.php index.html index.htm index.nginx-debian.html;</span><br><span class="line">        #服务器名字，不用管他</span><br><span class="line">        server_name _;</span><br><span class="line"></span><br><span class="line">        #在这里找到这些，把一部分注释去掉。</span><br><span class="line">        location ~ \.php$ &#123;</span><br><span class="line">                #这个注释去掉</span><br><span class="line">                include snippets&#x2F;fastcgi-php.conf;</span><br><span class="line">                #我们用的是php-fpm,所以去掉这个注释。</span><br><span class="line">                fastcgi_pass unix:&#x2F;run&#x2F;php&#x2F;php7.3-fpm.sock;</span><br><span class="line">        #别的不用管他，注意底下有个括号也要去掉注释。</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>确认无误按esc退出编辑，输入:wq保存。<br>我们在网站根目录新建一个phpinfo.php比如根目录/var/www/html就运行</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">vim &#x2F;var&#x2F;www&#x2F;html&#x2F;phpinfo.php &amp;&amp; chmod 777 &#x2F;var&#x2F;www&#x2F;html&#x2F;phpinfo.php</span><br></pre></td></tr></table></figure>
+<p>内容写</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php phpinfo() ?&gt;</span><br></pre></td></tr></table></figure>
+<p>然后重启nginx服务</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">service nginx restart</span><br></pre></td></tr></table></figure>
+<p>在浏览器访问机器ip/phpinfo.php应该能看到一大坨内容。如果没有就要检查配置了。最后配置mysql.新安装的mysql是没有密码的，我们要给他设置密码。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mysqladmin -uroot password</span><br></pre></td></tr></table></figure>
+
+<p>新密码刷新权限</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mysqladmin -uroot flush-privileges</span><br></pre></td></tr></table></figure>
+<p>搞定啦~</p>
+]]></content>
+      <categories>
+        <category>建站</category>
+      </categories>
+      <tags>
+        <tag>建站</tag>
+        <tag>Debian</tag>
+      </tags>
+  </entry>
 </search>
