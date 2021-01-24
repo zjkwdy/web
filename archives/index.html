@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="baidu-site-verification" content="code-MHmXGGvymI" />
+    <link rel="stylesheet" type="text/css" href="/css/waifu.css"/>
     <title>归档</title>
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -60,7 +61,28 @@
         </div>
     </div>
 </div>
+<div class="waifu">
+  <div class="waifu-tips"></div>
+  <canvas id="live2d" class="live2d"></canvas>
+  <div class="waifu-tool">
+      <span class="fui-home"></span>
+      <span class="fui-chat"></span>
+      <span class="fui-eye"></span>
+      <span class="fui-user"></span>
+      <span class="fui-photo"></span>
+      <span class="fui-info-circle"></span>
+      <span class="fui-cross"></span>
+  </div>
+</div>
 
+<script src="/js/waifu-tips.js"></script>
+<script src="/js/live2d.js"></script>
+
+<script type="text/javascript">
+  live2d_settings['modelId'] = 4;
+  live2d_settings['modelTexturesId'] = 76;
+  initModel("/live2d/waifu-tips.json")
+</script>
 </body>
 
 
@@ -129,6 +151,28 @@
 
 
 
+<div class="waifu">
+  <div class="waifu-tips"></div>
+  <canvas id="live2d" class="live2d"></canvas>
+  <div class="waifu-tool">
+      <span class="fui-home"></span>
+      <span class="fui-chat"></span>
+      <span class="fui-eye"></span>
+      <span class="fui-user"></span>
+      <span class="fui-photo"></span>
+      <span class="fui-info-circle"></span>
+      <span class="fui-cross"></span>
+  </div>
+</div>
+
+<script src="/js/waifu-tips.js"></script>
+<script src="/js/live2d.js"></script>
+
+<script type="text/javascript">
+  live2d_settings['modelId'] = 4;
+  live2d_settings['modelTexturesId'] = 76;
+  initModel("/live2d/waifu-tips.json")
+</script>
 
 
 </html>
