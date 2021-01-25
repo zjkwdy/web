@@ -12,12 +12,12 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="google" content="notranslate" />
     <meta name="keywords" content="IMin,"> 
-    <meta name="description" content="IMin一个憨批的博客,首先切换到rootBash
+    <meta name="description" content="IMin一个憨批的博客,首先切换到root
 1su -
-然后检查更新Bash
+然后检查更新
 1apt update &amp;amp;&amp;amp; apt upgrade -y
 安装程序包：
-1apt install nginx php-,"> 
+1apt install nginx php-fpm php-,"> 
     <meta name="author" content="IMin"> 
     <link rel="alternative" href="atom.xml" title="IMin Lab" type="application/atom+xml"> 
     <link rel="icon" href="/img/favicon.png"> 
@@ -71,9 +71,9 @@
 
         </div>
         <div class="content markdown">
-            <p>首先切换到rootBash</p>
+            <p>首先切换到root</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">su -</span><br></pre></td></tr></table></figure>
-<p>然后检查更新Bash</p>
+<p>然后检查更新</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt update &amp;&amp; apt upgrade -y</span><br></pre></td></tr></table></figure>
 <p>安装程序包：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt install nginx php-fpm php-xml php-mysql default-mysql-server default-mysql-client vim -y</span><br></pre></td></tr></table></figure>
@@ -231,6 +231,25 @@
 </div>
 
 
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+        tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+        messageStyle: "none"
+    });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
 
 
 <div class="waifu">
