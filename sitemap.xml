@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://wdsjimin.gitee.io/friend/index.html</loc>
+    
+    <lastmod>2021-01-25</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://wdsjimin.gitee.io/2021/01/25/MarkdownTest/</loc>
     
     <lastmod>2021-01-25</lastmod>
@@ -24,13 +31,6 @@
   
   <url>
     <loc>https://wdsjimin.gitee.io/2021/01/24/Debian%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BAnginx-php-mysql%E7%8E%AF%E5%A2%83/</loc>
-    
-    <lastmod>2021-01-25</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://wdsjimin.gitee.io/friend/index.html</loc>
     
     <lastmod>2021-01-25</lastmod>
     
