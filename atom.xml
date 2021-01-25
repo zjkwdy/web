@@ -6,7 +6,7 @@
   <link href="https://wdsjimin.gitee.io/atom.xml" rel="self"/>
   
   <link href="https://wdsjimin.gitee.io/"/>
-  <updated>2021-01-24T12:22:58.278Z</updated>
+  <updated>2021-01-25T03:16:28.629Z</updated>
   <id>https://wdsjimin.gitee.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>解决Mysql无法存储emoji</title>
+    <link href="https://wdsjimin.gitee.io/2021/01/25/%E8%A7%A3%E5%86%B3Mysql%E6%97%A0%E6%B3%95%E5%AD%98%E5%82%A8emoji/"/>
+    <id>https://wdsjimin.gitee.io/2021/01/25/%E8%A7%A3%E5%86%B3Mysql%E6%97%A0%E6%B3%95%E5%AD%98%E5%82%A8emoji/</id>
+    <published>2021-01-25T03:13:26.000Z</published>
+    <updated>2021-01-25T03:16:28.629Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="解决Mysql无法存储emoji"><a href="#解决Mysql无法存储emoji" class="headerlink" title="解决Mysql无法存储emoji"></a>解决Mysql无法存储emoji</h1><p>这几天放假无聊搞博客（当时还是z-blog），无意间发现发不出emoji?</p><hr><p>经过我的排查（百度）发现是mysql编码的问题。<br>原来的编码是utf8_general_ci，它采用3字节存储一个文字。<br>但是emoji是4个字节，所以，<del>太大了塞不进去</del><br>知道了问题出在哪里，就可以着手修问题了。首先我们下载一个phpmyadmin放在网站根目录配置好，具体百度。（因为是ui界面用起来舒服）<br>然后用你的mysql账户密码登录phpmyadmin,<br>找到你博客对应的数据库，在工具栏找操作，在最底下就有个排序规则。把他改成utf8mb4_general_ci。<br>然后勾选更改所有表排序规则和所有列规则，执行。重启一下mysql、php和nginx然后就可以发出emoji辣！</p><hr><p>参考资料<a href="https://wiki.zblogcn.com/doku.php?id=zblogphp:failure:cannotemoji">https://wiki.zblogcn.com/doku.php?id=zblogphp:failure:cannotemoji</a></p><p><a href="http://zctou.com/?p=1502">http://zctou.com/?p=1502</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;解决Mysql无法存储emoji&quot;&gt;&lt;a href=&quot;#解决Mysql无法存储emoji&quot; class=&quot;headerlink&quot; title=&quot;解决Mysql无法存储emoji&quot;&gt;&lt;/a&gt;解决Mysql无法存储emoji&lt;/h1&gt;&lt;p&gt;这几天放假无聊搞博客（当时还</summary>
+      
+    
+    
+    
+    <category term="建站" scheme="https://wdsjimin.gitee.io/categories/%E5%BB%BA%E7%AB%99/"/>
+    
+    <category term="Mysql" scheme="https://wdsjimin.gitee.io/categories/%E5%BB%BA%E7%AB%99/Mysql/"/>
+    
+    
+    <category term="建站" scheme="https://wdsjimin.gitee.io/tags/%E5%BB%BA%E7%AB%99/"/>
+    
+    <category term="Mysql" scheme="https://wdsjimin.gitee.io/tags/Mysql/"/>
+    
+  </entry>
   
   <entry>
     <title>Debian环境搭建nginx+php+mysql环境</title>
