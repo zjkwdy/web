@@ -3,7 +3,7 @@
   <entry>
     <title>博客开始从Z-Blog迁移向静态化的Hexo</title>
     <url>/2021/01/24/%E5%8D%9A%E5%AE%A2%E5%BC%80%E5%A7%8B%E4%BB%8EZ-Blog%E8%BF%81%E7%A7%BB%E5%90%91%E9%9D%99%E6%80%81%E5%8C%96%E7%9A%84Hexo/</url>
-    <content><![CDATA[<h1 id="博客迁移公告"><a href="#博客迁移公告" class="headerlink" title="博客迁移公告"></a><strong>博客迁移公告</strong></h1><p>这是我在Hexo架构下的第一篇博客。<br>原本的跳转做法虽然看起来好使但是，它不能被百度收录，所以帮不了别人。<br>（自娱自乐）<br>所以我今天我把gitee仓库配置好了Hexo.<del><strong>（我可是没吃早饭）</strong></del><br><strong>抽空可能会写这个静态博客的配置过程（笑）</strong><br>之后原来博客的一些文章会慢慢过来，取决于我的心情（）<br>评论什么的抽空再折腾，需要在Github上搞，哪天心情好了就折腾了。</p>
+    <content><![CDATA[<h1 id="博客迁移公告"><a href="#博客迁移公告" class="headerlink" title="博客迁移公告"></a><strong>博客迁移公告</strong></h1><p>这是我在Hexo框架下的第一篇博客。<br>原本的跳转做法虽然看起来好使但是，它不能被百度收录，所以帮不了别人。<br>（自娱自乐）<br>所以我今天我把gitee仓库配置好了Hexo.<del><strong>（我可是没吃早饭）</strong></del><br><strong>抽空可能会写这个静态博客的配置过程（笑）</strong><br>之后原来博客的一些文章会慢慢过来，取决于我的心情（）<br>评论什么的抽空再折腾，需要在Github上搞，哪天心情好了就折腾了。</p>
 ]]></content>
       <categories>
         <category>公告</category>
