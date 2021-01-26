@@ -17,21 +17,20 @@
     <link rel="alternative" href="atom.xml" title="IMin Lab" type="application/atom+xml"> 
     <link rel="icon" href="/img/favicon.png"> 
     
+<link rel="stylesheet" href="/css/bilibili_iconfont.css">
+
+    
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+    
+<link rel="stylesheet" href="/css/bilibili_iconfont.css">
 
     
 <link rel="stylesheet" href="/css/diaspora.css">
 
-	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    <script>
-         (adsbygoogle = window.adsbygoogle || []).push({
-              google_ad_client: "ca-pub-8691406134231910",
-              enable_page_level_ads: true
-         });
-    </script>
-    <script async custom-element="amp-auto-ads"
-        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
-    </script>
+    
+<link rel="stylesheet" href="/css/waifu.css">
+
 <meta name="generator" content="Hexo 5.3.0"></head>
 
 <body class="loading">
@@ -70,6 +69,16 @@
 <script src="/js/plugin.js"></script>
 <script src="/js/typed.js"></script>
 <script src="/js/diaspora.js"></script>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<script src="/js/live2d.js"></script>
+<script src="/js/waifu-tips.js"></script>
 
 
 <link rel="stylesheet" href="/photoswipe/photoswipe.css">
@@ -130,6 +139,24 @@
 
 
 
+<div class="waifu">
+  <div class="waifu-tips"></div>
+  <canvas id="live2d" class="live2d"></canvas>
+  <div class="waifu-tool">
+      <span class="fui-home"></span>
+      <span class="fui-chat"></span>
+      <span class="fui-eye"></span>
+      <span class="fui-user"></span>
+      <span class="fui-photo"></span>
+      <span class="fui-info-circle"></span>
+      <span class="fui-cross"></span>
+  </div>
+</div>
+<script type="text/javascript">
+  initModel("/live2d/waifu-tips.json")
+</script>
+
+
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
         tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
@@ -150,28 +177,6 @@
 </script>
 
 
-<div class="waifu">
-  <div class="waifu-tips"></div>
-  <canvas id="live2d" class="live2d"></canvas>
-  <div class="waifu-tool">
-      <span class="fui-home"></span>
-      <span class="fui-chat"></span>
-      <span class="fui-eye"></span>
-      <span class="fui-user"></span>
-      <span class="fui-photo"></span>
-      <span class="fui-info-circle"></span>
-      <span class="fui-cross"></span>
-  </div>
-</div>
-
-<script src="/js/waifu-tips.js"></script>
-<script src="/js/live2d.js"></script>
-
-<script type="text/javascript">
-  live2d_settings['modelId'] = 4;
-  live2d_settings['modelTexturesId'] = 76;
-  initModel("/live2d/waifu-tips.json")
-</script>
 
 
 </html>
