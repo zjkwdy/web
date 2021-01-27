@@ -1,0 +1,146 @@
+/*黑♂暗模式*/
+
+html,
+body {
+    background: #06090f;
+}
+
+.nav {
+    background: rgb(0 0 0 / 90%);
+}
+
+body.mu .image-logo {
+    background-color: rgb(255 255 255);
+}
+
+img {
+    filter: brightness(60%);
+}
+
+.else h3 a {
+    color: rgb(255, 255, 255);
+}
+
+.else h3+p {
+    color: rgb(255, 255, 255);
+}
+
+.else p:first-child {
+    color: rgb(255, 255, 255);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+ul,
+li,
+table {
+    color: rgb(255, 255, 255) !important;
+}
+
+.content table tr {
+    border-top: 1px solid #06090f;
+    background-color: #21262d;
+}
+
+#single {
+    background: #06090f;
+}
+
+#preview.show {
+    background: #06090f;
+}
+
+.comment {
+    background: #06090f;
+}
+
+.markdown-body {
+    background-color: #21262d;
+}
+
+.gt-container .gt-comment-admin .gt-comment-content {
+    background-color: #21262d;
+}
+
+.gt-container .gt-comments {
+    background-color: #06090f;
+}
+
+.comment .gt-header-preview {
+    background: #21262d;
+}
+
+.gt-container .gt-avatar img {
+    filter: invert(100%);
+}
+
+.comment .gt-header-textarea {
+    background: #21262d;
+    color: white;
+}
+
+.comment .gt-counts a {
+    color: white;
+}
+
+.gt-container .gt-counts {
+    margin: 0 0.625em 0 0;
+    color: white;
+}
+
+.highlight {
+    border-top-color: rgb(33, 38, 45);
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-right-color: rgb(33, 38, 45);
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-bottom-color: rgb(33, 38, 45);
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-left-color: rgb(33, 38, 45);
+    border-left-style: solid;
+    border-left-width: 1px;
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+    background: #000000;
+}
+
+#top {
+    border-bottom: 1px solid #21262d;
+    background: #06090f;
+}
+
+.post {
+    background: #0d1117;
+    border-bottom: 1px solid #21262d;
+}
+
+.waifu {
+    filter: brightness(0.5);
+}
+
+.else {
+    background: #0d1117;
+    border: 1px solid #0d1117;
+}
+
+#container:before {
+    background: #21262d;
+}
+
+.iconfont {
+    background: #06090f;
+    color: rgb(218, 181, 125);
+}
+
+#vibrant svg>polygon {
+    fill: rgb(0 0 0 / 60%)
+}

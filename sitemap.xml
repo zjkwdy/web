@@ -74,50 +74,50 @@
 
   <url>
     <loc>https://wdsjimin.gitee.io/</loc>
-    <lastmod>2021-01-26</lastmod>
+    <lastmod>2021-01-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
   
   <url>
-    <loc>https://wdsjimin.gitee.io/tags/%E5%85%AC%E5%91%8A/</loc>
-    <lastmod>2021-01-26</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://wdsjimin.gitee.io/tags/%E5%BB%BA%E7%AB%99/</loc>
-    <lastmod>2021-01-26</lastmod>
+    <lastmod>2021-01-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://wdsjimin.gitee.io/tags/Debian/</loc>
-    <lastmod>2021-01-26</lastmod>
+    <lastmod>2021-01-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://wdsjimin.gitee.io/tags/Mysql/</loc>
-    <lastmod>2021-01-26</lastmod>
+    <loc>https://wdsjimin.gitee.io/tags/%E5%85%AC%E5%91%8A/</loc>
+    <lastmod>2021-01-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://wdsjimin.gitee.io/tags/Python/</loc>
-    <lastmod>2021-01-26</lastmod>
+    <lastmod>2021-01-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://wdsjimin.gitee.io/tags/%E6%97%A5%E5%B8%B8/</loc>
-    <lastmod>2021-01-26</lastmod>
+    <lastmod>2021-01-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://wdsjimin.gitee.io/tags/Mysql/</loc>
+    <lastmod>2021-01-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -125,36 +125,36 @@
 
   
   <url>
-    <loc>https://wdsjimin.gitee.io/categories/%E5%85%AC%E5%91%8A/</loc>
-    <lastmod>2021-01-26</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://wdsjimin.gitee.io/categories/%E5%BB%BA%E7%AB%99/</loc>
-    <lastmod>2021-01-26</lastmod>
+    <lastmod>2021-01-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://wdsjimin.gitee.io/categories/%E5%BB%BA%E7%AB%99/Mysql/</loc>
-    <lastmod>2021-01-26</lastmod>
+    <loc>https://wdsjimin.gitee.io/categories/%E5%85%AC%E5%91%8A/</loc>
+    <lastmod>2021-01-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://wdsjimin.gitee.io/categories/Python/</loc>
-    <lastmod>2021-01-26</lastmod>
+    <lastmod>2021-01-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://wdsjimin.gitee.io/categories/%E5%BB%BA%E7%AB%99/Mysql/</loc>
+    <lastmod>2021-01-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://wdsjimin.gitee.io/categories/Python/%E6%97%A5%E5%B8%B8/</loc>
-    <lastmod>2021-01-26</lastmod>
+    <lastmod>2021-01-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
