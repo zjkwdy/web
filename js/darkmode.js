@@ -1,7 +1,7 @@
 var night = document.cookie.replace(/(?:(?:^|.*;\s*)night\s*\=\s*([^;]*).*$)|^.*$/, "$1");
 if (night == '1') {
     console.log('夜间模式开启');
-    switchDarkMode(1)
+    switchDarkMode(0)
 } else {
     console.log('夜间模式关闭');
 }
