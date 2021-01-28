@@ -54,12 +54,24 @@ table {
     border-top: 1px solid #06090f;
     background-color: #21262d;
 }
+
 .post-tags-list-link {
     color: rgb(52 90 125);
 }
+
 .markdown-body table tr {
     background-color: #fff;
     color: black;
+}
+
+/*gittalk评论区眼瞎特效*/
+.gt-container .gt-header-textarea:hover {
+    background-color: #232830 !important;
+}
+
+.gt-container .gt-comment-content:hover {
+    -webkit-box-shadow: 0 0.625em 3.75em 0 #21262d !important;
+    box-shadow: 0 0.625em 3.75em 0 #21262d !important;
 }
 
 #single {
@@ -140,7 +152,7 @@ table {
 }
 
 .waifu {
-    filter: brightness(0.5);
+    filter: brightness(0.6);
 }
 
 .else {
