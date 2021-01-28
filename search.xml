@@ -133,4 +133,16 @@
         <tag>Mysql</tag>
       </tags>
   </entry>
+  <entry>
+    <title>htmlTest</title>
+    <url>/2021/01/28/htmlTest/</url>
+    <content><![CDATA[<h2 id="Iframe标签"><a href="#Iframe标签" class="headerlink" title="Iframe标签"></a>Iframe标签</h2><iframe width="100%" scrolling=no height="800" frameborder="0" src="https://www.bilibili.com/blackboard/activity-ancient-player.html?aid=84059637&cid=143797759"></iframe>
+]]></content>
+      <categories>
+        <category>公告</category>
+      </categories>
+      <tags>
+        <tag>公告</tag>
+      </tags>
+  </entry>
 </search>

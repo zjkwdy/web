@@ -6,7 +6,7 @@
   <link href="https://wdsjimin.gitee.io/atom.xml" rel="self"/>
   
   <link href="https://wdsjimin.gitee.io/"/>
-  <updated>2021-01-26T13:27:31.371Z</updated>
+  <updated>2021-01-28T10:50:19.563Z</updated>
   <id>https://wdsjimin.gitee.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>htmlTest</title>
+    <link href="https://wdsjimin.gitee.io/2021/01/28/htmlTest/"/>
+    <id>https://wdsjimin.gitee.io/2021/01/28/htmlTest/</id>
+    <published>2021-01-28T10:29:36.000Z</published>
+    <updated>2021-01-28T10:50:19.563Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Iframe标签"><a href="#Iframe标签" class="headerlink" title="Iframe标签"></a>Iframe标签</h2><iframe width="100%" scrolling=no height="800" frameborder="0" src="https://www.bilibili.com/blackboard/activity-ancient-player.html?aid=84059637&cid=143797759"></iframe>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;Iframe标签&quot;&gt;&lt;a href=&quot;#Iframe标签&quot; class=&quot;headerlink&quot; title=&quot;Iframe标签&quot;&gt;&lt;/a&gt;Iframe标签&lt;/h2&gt;&lt;iframe width=&quot;100%&quot; scrolling=no height=&quot;800&quot; fr</summary>
+      
+    
+    
+    
+    <category term="公告" scheme="https://wdsjimin.gitee.io/categories/%E5%85%AC%E5%91%8A/"/>
+    
+    
+    <category term="公告" scheme="https://wdsjimin.gitee.io/tags/%E5%85%AC%E5%91%8A/"/>
+    
+  </entry>
   
   <entry>
     <title>Python实现自动点赞收藏防护林有关视频</title>
