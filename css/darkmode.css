@@ -35,7 +35,6 @@ h3,
 h4,
 h5,
 p,
-a,
 ul,
 li,
 table {
@@ -166,9 +165,21 @@ table {
 
 .iconfont {
     background: #06090f;
-    color: rgb(218, 181, 125);
+    color:white !important;
 }
 
 #vibrant svg>polygon {
     fill: rgb(0 0 0 / 60%)
+}
+.menu a:hover{
+    color: white;
+}
+input{
+    color:gray;
+}
+input{
+    color: gray;
+}
+input:focus{
+    color:white;
 }
