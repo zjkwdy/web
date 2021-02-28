@@ -1,0 +1,1356 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="baidu-site-verification" content="code-MHmXGGvymI" />
+    <link rel="stylesheet" type="text/css" href="/css/waifu.css"/>
+    <title>IMin Lab</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="IMin,"> 
+    <meta name="description" content="IMin一个憨批的博客,"> 
+    <meta name="author" content="IMin"> 
+    <link rel="alternative" href="atom.xml" title="IMin Lab" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+<link rel="stylesheet" href="/css/bilibili_iconfont.css">
+
+    
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+    
+<link rel="stylesheet" href="/css/bilibili_iconfont.css">
+
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+    
+<link rel="stylesheet" href="/css/waifu.css">
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">IMin Lab</span>
+    <div id="loader"></div>
+    <div id="single" class="page">
+    <div id="top">
+        <a class="iconfont icon-left image-icon" href="javascript:history.back()"></a>
+    </div>
+    <div class="section">
+        <div class="article">
+            <div class="main">
+                <div class="content">
+                
+                        <h1 id="历史记录"><a href="#历史记录" class="headerlink" title="历史记录"></a>历史记录</h1><img src="/imgs/history.png" width="25" height="20"/>
+
+<ul>
+<li><a href="#%E8%8E%B7%E5%8F%96%E5%8E%86%E5%8F%B2%E8%AE%B0%E5%BD%95%E5%88%97%E8%A1%A8%EF%BC%88%E8%A7%86%E9%A2%91%E3%80%81%E7%9B%B4%E6%92%AD%E3%80%81%E4%B8%93%E6%A0%8F%EF%BC%89">获取历史记录列表（视频、直播、专栏）</a></li>
+<li><a href="#%E8%8E%B7%E5%8F%96%E5%85%A8%E9%83%A8%E8%A7%86%E9%A2%91%E5%8E%86%E5%8F%B2%E8%AE%B0%E5%BD%95%EF%BC%88%E6%97%A7%EF%BC%89">获取全部视频历史记录（旧）</a></li>
+<li><a href="#%E5%88%A0%E9%99%A4%E5%8E%86%E5%8F%B2%E8%AE%B0%E5%BD%95">删除历史记录</a></li>
+<li><a href="#%E6%B8%85%E7%A9%BA%E5%8E%86%E5%8F%B2%E8%AE%B0%E5%BD%95">清空历史记录</a></li>
+<li><a href="#%E5%81%9C%E7%94%A8%E5%8E%86%E5%8F%B2%E8%AE%B0%E5%BD%95">停用历史记录</a></li>
+<li><a href="#%E6%9F%A5%E8%AF%A2%E5%8E%86%E5%8F%B2%E8%AE%B0%E5%BD%95%E5%81%9C%E7%94%A8%E7%8A%B6%E6%80%81">查询历史记录停用状态</a></li>
+</ul>
+<hr>
+<h2 id="获取历史记录列表（视频、直播、专栏）"><a href="#获取历史记录列表（视频、直播、专栏）" class="headerlink" title="获取历史记录列表（视频、直播、专栏）"></a>获取历史记录列表（视频、直播、专栏）</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="http://api.bilibili.com/x/web-interface/history/cursor">http://api.bilibili.com/x/web-interface/history/cursor</a></p>
+</blockquote>
+<p><em>请求方式：GET</em></p>
+<p>认证方式：Cookie（SESSDATA）</p>
+<p><strong>url参数：</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>类型</th>
+<th>内容</th>
+<th>必要性</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>max</td>
+<td>num</td>
+<td>历史记录截止目标ID</td>
+<td>非必要</td>
+<td>默认为0<br />稿件：稿件avID<br />番剧（影视）：剧集ssID<br />直播：直播间ID<br />文集：文集rlID<br />文章：文章cvID</td>
+</tr>
+<tr>
+<td>business</td>
+<td>num</td>
+<td>历史记录截止目标ID类型</td>
+<td>非必要</td>
+<td>默认为空<br />archive：稿件<br />pgc：番剧（影视）<br />live：直播<br />article-list：文集<br />article：文章</td>
+</tr>
+<tr>
+<td>view_at</td>
+<td>num</td>
+<td>历史记录截止时间</td>
+<td>非必要</td>
+<td>时间戳<br />默认为0<br />0为当前时间</td>
+</tr>
+<tr>
+<td>ps</td>
+<td>num</td>
+<td>每页项数</td>
+<td>非必要</td>
+<td>默认为20</td>
+</tr>
+</tbody></table>
+<p><strong>json回复：</strong></p>
+<p>根对象：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>内容</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>code</td>
+<td>num</td>
+<td>返回值</td>
+<td>0：成功<br />-101：账号未登录<br />-400：请求错误</td>
+</tr>
+<tr>
+<td>message</td>
+<td>str</td>
+<td>错误信息</td>
+<td>默认为0</td>
+</tr>
+<tr>
+<td>ttl</td>
+<td>num</td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td>array</td>
+<td>历史记录列表</td>
+<td></td>
+</tr>
+</tbody></table>
+<p><code>data</code>对象：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>内容</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>cursor</td>
+<td>obj</td>
+<td>历史记录页面信息</td>
+<td></td>
+</tr>
+<tr>
+<td>tab</td>
+<td>array</td>
+<td>历史记录筛选类型</td>
+<td></td>
+</tr>
+<tr>
+<td>list</td>
+<td>array</td>
+<td>分段历史记录列表</td>
+<td></td>
+</tr>
+</tbody></table>
+<p><code>data</code>中的<code>cursor</code>对象：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>内容</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>max</td>
+<td>num</td>
+<td>最后一项目标ID</td>
+<td><strong>详细内容见参数</strong></td>
+</tr>
+<tr>
+<td>view_at</td>
+<td>num</td>
+<td>最后一项时间节点</td>
+<td>时间戳</td>
+</tr>
+<tr>
+<td>business</td>
+<td>str</td>
+<td>最后一项目标ID类型</td>
+<td><strong>详细内容见参数</strong></td>
+</tr>
+<tr>
+<td>ps</td>
+<td>num</td>
+<td>每页项数</td>
+<td></td>
+</tr>
+</tbody></table>
+<p><code>data</code>中的<code>tab</code>数组：</p>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>类型</th>
+<th>内容</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>obj</td>
+<td>历史记录筛选类型1</td>
+<td></td>
+</tr>
+<tr>
+<td>1</td>
+<td>obj</td>
+<td>历史记录筛选类型2</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>obj</td>
+<td>历史记录筛选类型3</td>
+<td></td>
+</tr>
+</tbody></table>
+<p><code>tab</code>数组中的对象：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>内容</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>type</td>
+<td>str</td>
+<td>类型</td>
+<td></td>
+</tr>
+<tr>
+<td>name</td>
+<td>str</td>
+<td>类型名</td>
+<td></td>
+</tr>
+</tbody></table>
+<p><code>data</code>中的<code>tab</code>数组：</p>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>类型</th>
+<th>内容</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>obj</td>
+<td>历史记录1</td>
+<td></td>
+</tr>
+<tr>
+<td>n</td>
+<td>obj</td>
+<td>历史记录（n+1）</td>
+<td>按照查看顺序排列</td>
+</tr>
+<tr>
+<td>……</td>
+<td>obj</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p><code>tab</code>数组中的对象：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>内容</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>title</td>
+<td>str</td>
+<td>条目标题</td>
+<td></td>
+</tr>
+<tr>
+<td>long_title</td>
+<td>str</td>
+<td>条目副标题</td>
+<td></td>
+</tr>
+<tr>
+<td>cover</td>
+<td>str</td>
+<td>条目封面图url</td>
+<td>用于专栏以外的条目</td>
+</tr>
+<tr>
+<td>covers</td>
+<td>有效时：array<br />无效时：null</td>
+<td>条目封面图组</td>
+<td>仅用于专栏</td>
+</tr>
+<tr>
+<td>uri</td>
+<td>str</td>
+<td>重定向url</td>
+<td>仅用于剧集和直播</td>
+</tr>
+<tr>
+<td>history</td>
+<td>obj</td>
+<td>条目详细信息</td>
+<td></td>
+</tr>
+<tr>
+<td>videos</td>
+<td>num</td>
+<td>视频分P数目</td>
+<td>仅用于稿件视频</td>
+</tr>
+<tr>
+<td>author_name</td>
+<td>str</td>
+<td>UP主昵称</td>
+<td></td>
+</tr>
+<tr>
+<td>author_face</td>
+<td>str</td>
+<td>UP主头像url</td>
+<td></td>
+</tr>
+<tr>
+<td>author_mid</td>
+<td>num</td>
+<td>UP主UID</td>
+<td></td>
+</tr>
+<tr>
+<td>view_at</td>
+<td>num</td>
+<td>查看时间</td>
+<td>时间戳</td>
+</tr>
+<tr>
+<td>progress</td>
+<td>num</td>
+<td>视频观看进度</td>
+<td>单位为秒<br />用于稿件视频或剧集</td>
+</tr>
+<tr>
+<td>badge</td>
+<td>str</td>
+<td>条目备注标识</td>
+<td>用于稿件视频或剧集</td>
+</tr>
+<tr>
+<td>show_title</td>
+<td>str</td>
+<td>分P标题</td>
+<td>用于稿件视频或剧集</td>
+</tr>
+<tr>
+<td>duration</td>
+<td>num</td>
+<td>视频总时长</td>
+<td>用于稿件视频或剧集</td>
+</tr>
+<tr>
+<td>current</td>
+<td>str</td>
+<td>空</td>
+<td><strong>作用尚不明确</strong></td>
+</tr>
+<tr>
+<td>total</td>
+<td>num</td>
+<td>总计分集数</td>
+<td>仅用于剧集</td>
+</tr>
+<tr>
+<td>new_desc</td>
+<td>str</td>
+<td>最新一话/最新一P标识</td>
+<td>用于稿件视频或剧集</td>
+</tr>
+<tr>
+<td>is_finish</td>
+<td>num</td>
+<td>是否已完结</td>
+<td>仅用于剧集<br />0：未完结<br />1：已完结</td>
+</tr>
+<tr>
+<td>is_fav</td>
+<td>num</td>
+<td>是否收藏</td>
+<td>0：未收藏<br />1：已收藏</td>
+</tr>
+<tr>
+<td>kid</td>
+<td>num</td>
+<td>条目目标ID</td>
+<td><strong>详细内容见参数</strong></td>
+</tr>
+<tr>
+<td>tag_name</td>
+<td>str</td>
+<td>子分区名</td>
+<td>用于稿件视频和直播</td>
+</tr>
+<tr>
+<td>live_status</td>
+<td>num</td>
+<td>直播状态</td>
+<td>仅用于直播<br />0：未开播<br />1：已开播</td>
+</tr>
+</tbody></table>
+<p><code>tab</code>数组中的对象中的<code>covers</code>数组：</p>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>类型</th>
+<th>内容</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>str</td>
+<td>封面图片1</td>
+<td></td>
+</tr>
+<tr>
+<td>n</td>
+<td>str</td>
+<td>封面图片（n+1）</td>
+<td></td>
+</tr>
+<tr>
+<td>……</td>
+<td>str</td>
+<td>……</td>
+<td></td>
+</tr>
+</tbody></table>
+<p><code>tab</code>数组中的对象中的<code>history</code>对象：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>内容</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>oid</td>
+<td>num</td>
+<td>目标ID</td>
+<td>稿件视频&amp;剧集（当<code>business=archive</code>或<code>business=pgc</code>时）：稿件avID<br />直播（当<code>business=live</code>时）：直播间ID<br />文章（当<code>business=article</code>时）：文章cvID<br />文集（当<code>business=article-list</code>时）：文集rlID</td>
+</tr>
+<tr>
+<td>epid</td>
+<td>num</td>
+<td>剧集epID</td>
+<td>仅用于剧集</td>
+</tr>
+<tr>
+<td>bvid</td>
+<td>str</td>
+<td>稿件bvID</td>
+<td>仅用于稿件视频</td>
+</tr>
+<tr>
+<td>page</td>
+<td>num</td>
+<td>观看到的视频分P数</td>
+<td>仅用于稿件视频</td>
+</tr>
+<tr>
+<td>cid</td>
+<td>num</td>
+<td>观看到的对象ID</td>
+<td>稿件视频&amp;剧集（当<code>business=archive</code>或<code>business=pgc</code>时）：视频CID<br />文集（当<code>business=article-list</code>时）：文章cvID</td>
+</tr>
+<tr>
+<td>part</td>
+<td>str</td>
+<td>观看到的视频分P标题</td>
+<td>仅用于稿件视频</td>
+</tr>
+<tr>
+<td>business</td>
+<td>str</td>
+<td>条目类型</td>
+<td><strong>详细内容见参数</strong></td>
+</tr>
+<tr>
+<td>dt</td>
+<td>num</td>
+<td>查看平台代码</td>
+<td>1 3 5 7：手机端<br />2：web端<br />4 6：pad端<br />33：TV端<br />0：其他</td>
+</tr>
+</tbody></table>
+<p><strong>示例：</strong></p>
+<p>获取当前时间截止的5条历史记录</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">curl -G &#x27;http://api.bilibili.com/x/web-interface/history/cursor&#x27; \</span><br><span class="line">--data-urlencode &#x27;ps=5&#x27; \</span><br><span class="line">-b &#x27;SESSDATA=xxx&#x27;</span><br></pre></td></tr></table></figure>
+<details>
+<summary>查看响应示例：</summary>
+
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;code&quot;</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="attr">&quot;message&quot;</span>: <span class="string">&quot;0&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;ttl&quot;</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="attr">&quot;data&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;cursor&quot;</span>: &#123;</span><br><span class="line">            <span class="attr">&quot;max&quot;</span>: <span class="number">26193</span>,</span><br><span class="line">            <span class="attr">&quot;view_at&quot;</span>: <span class="number">1592985807</span>,</span><br><span class="line">            <span class="attr">&quot;business&quot;</span>: <span class="string">&quot;pgc&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;ps&quot;</span>: <span class="number">5</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">&quot;tab&quot;</span>: [</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;archive&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;视频&quot;</span></span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;live&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;直播&quot;</span></span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;article&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;专栏&quot;</span></span><br><span class="line">            &#125;</span><br><span class="line">        ],</span><br><span class="line">        <span class="attr">&quot;list&quot;</span>: [</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">&quot;title&quot;</span>: <span class="string">&quot;韩国漫画如何出海掘金？一年出口额2.8亿元&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;long_title&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;cover&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;covers&quot;</span>: [</span><br><span class="line">                    <span class="string">&quot;https://i0.hdslb.com/bfs/article/b170c6fd7429ae205d6cb935e1d431710d82609d.jpg&quot;</span></span><br><span class="line">                ],</span><br><span class="line">                <span class="attr">&quot;uri&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;history&quot;</span>: &#123;</span><br><span class="line">                    <span class="attr">&quot;oid&quot;</span>: <span class="number">6470274</span>,</span><br><span class="line">                    <span class="attr">&quot;epid&quot;</span>: <span class="number">0</span>,</span><br><span class="line">                    <span class="attr">&quot;bvid&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">                    <span class="attr">&quot;page&quot;</span>: <span class="number">0</span>,</span><br><span class="line">                    <span class="attr">&quot;cid&quot;</span>: <span class="number">0</span>,</span><br><span class="line">                    <span class="attr">&quot;part&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">                    <span class="attr">&quot;business&quot;</span>: <span class="string">&quot;article&quot;</span>,</span><br><span class="line">                    <span class="attr">&quot;dt&quot;</span>: <span class="number">2</span></span><br><span class="line">                &#125;,</span><br><span class="line">                <span class="attr">&quot;videos&quot;</span>: <span class="number">0</span>,</span><br><span class="line">                <span class="attr">&quot;author_name&quot;</span>: <span class="string">&quot;三文娱&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;author_face&quot;</span>: <span class="string">&quot;http://i1.hdslb.com/bfs/face/98566839756a8e3de6e183109984b032de6ff2d9.jpg&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;author_mid&quot;</span>: <span class="number">34772409</span>,</span><br><span class="line">                <span class="attr">&quot;view_at&quot;</span>: <span class="number">1593000539</span>,</span><br><span class="line">                <span class="attr">&quot;progress&quot;</span>: <span class="number">0</span>,</span><br><span class="line">                <span class="attr">&quot;badge&quot;</span>: <span class="string">&quot;专栏&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;show_title&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;duration&quot;</span>: <span class="number">0</span>,</span><br><span class="line">                <span class="attr">&quot;current&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;total&quot;</span>: <span class="number">0</span>,</span><br><span class="line">                <span class="attr">&quot;new_desc&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;is_finish&quot;</span>: <span class="number">0</span>,</span><br><span class="line">                <span class="attr">&quot;is_fav&quot;</span>: <span class="number">0</span>,</span><br><span class="line">                <span class="attr">&quot;kid&quot;</span>: <span class="number">6470274</span>,</span><br><span class="line">                <span class="attr">&quot;tag_name&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;live_status&quot;</span>: <span class="number">0</span></span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">&quot;title&quot;</span>: <span class="string">&quot;从国际空间站俯瞰地球，静谧蓝星守护者&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;long_title&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;cover&quot;</span>: <span class="string">&quot;http://i0.hdslb.com/bfs/live/new_room_cover/f07d8a0c7c5655f81cf1586903a121f2680cf3bc.jpg&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;covers&quot;</span>: <span class="literal">null</span>,</span><br><span class="line">                <span class="attr">&quot;uri&quot;</span>: <span class="string">&quot;https://live.bilibili.com/14047&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;history&quot;</span>: &#123;</span><br><span class="line">                    <span class="attr">&quot;oid&quot;</span>: <span class="number">14047</span>,</span><br><span class="line">                    <span class="attr">&quot;epid&quot;</span>: <span class="number">0</span>,</span><br><span class="line">                    <span class="attr">&quot;bvid&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">                    <span class="attr">&quot;page&quot;</span>: <span class="number">0</span>,</span><br><span class="line">                    <span class="attr">&quot;cid&quot;</span>: <span class="number">0</span>,</span><br><span class="line">                    <span class="attr">&quot;part&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">                    <span class="attr">&quot;business&quot;</span>: <span class="string">&quot;live&quot;</span>,</span><br><span class="line">                    <span class="attr">&quot;dt&quot;</span>: <span class="number">2</span></span><br><span class="line">                &#125;,</span><br><span class="line">                <span class="attr">&quot;videos&quot;</span>: <span class="number">0</span>,</span><br><span class="line">                <span class="attr">&quot;author_name&quot;</span>: <span class="string">&quot;Zelo-Balance&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;author_face&quot;</span>: <span class="string">&quot;http://i1.hdslb.com/bfs/face/7303b3032d1e13ca7c788cd9c30d4430f8ffd1ea.jpg&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;author_mid&quot;</span>: <span class="number">19193</span>,</span><br><span class="line">                <span class="attr">&quot;view_at&quot;</span>: <span class="number">1592999822</span>,</span><br><span class="line">                <span class="attr">&quot;progress&quot;</span>: <span class="number">0</span>,</span><br><span class="line">                <span class="attr">&quot;badge&quot;</span>: <span class="string">&quot;直播中&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;show_title&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;duration&quot;</span>: <span class="number">0</span>,</span><br><span class="line">                <span class="attr">&quot;current&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;total&quot;</span>: <span class="number">0</span>,</span><br><span class="line">                <span class="attr">&quot;new_desc&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;is_finish&quot;</span>: <span class="number">0</span>,</span><br><span class="line">                <span class="attr">&quot;is_fav&quot;</span>: <span class="number">0</span>,</span><br><span class="line">                <span class="attr">&quot;kid&quot;</span>: <span class="number">14047</span>,</span><br><span class="line">                <span class="attr">&quot;tag_name&quot;</span>: <span class="string">&quot;户外&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;live_status&quot;</span>: <span class="number">1</span></span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">&quot;title&quot;</span>: <span class="string">&quot;许巍 《蓝莲花》吉他Cover，这回你们不用截图抓我了吧&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;long_title&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;cover&quot;</span>: <span class="string">&quot;http://i2.hdslb.com/bfs/archive/0225b1f1a790393097ceebb51e89796be806d6bc.jpg&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;covers&quot;</span>: <span class="literal">null</span>,</span><br><span class="line">                <span class="attr">&quot;uri&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;history&quot;</span>: &#123;</span><br><span class="line">                    <span class="attr">&quot;oid&quot;</span>: <span class="number">883617049</span>,</span><br><span class="line">                    <span class="attr">&quot;epid&quot;</span>: <span class="number">0</span>,</span><br><span class="line">                    <span class="attr">&quot;bvid&quot;</span>: <span class="string">&quot;BV1sK4y147ob&quot;</span>,</span><br><span class="line">                    <span class="attr">&quot;page&quot;</span>: <span class="number">1</span>,</span><br><span class="line">                    <span class="attr">&quot;cid&quot;</span>: <span class="number">205017957</span>,</span><br><span class="line">                    <span class="attr">&quot;part&quot;</span>: <span class="string">&quot;许巍 《蓝莲花》 Cover_1&quot;</span>,</span><br><span class="line">                    <span class="attr">&quot;business&quot;</span>: <span class="string">&quot;archive&quot;</span>,</span><br><span class="line">                    <span class="attr">&quot;dt&quot;</span>: <span class="number">2</span></span><br><span class="line">                &#125;,</span><br><span class="line">                <span class="attr">&quot;videos&quot;</span>: <span class="number">1</span>,</span><br><span class="line">                <span class="attr">&quot;author_name&quot;</span>: <span class="string">&quot;硬核拆解&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;author_face&quot;</span>: <span class="string">&quot;http://i1.hdslb.com/bfs/face/4e131c9609299303cdde882792fc62b9f99cdcde.jpg&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;author_mid&quot;</span>: <span class="number">427494870</span>,</span><br><span class="line">                <span class="attr">&quot;view_at&quot;</span>: <span class="number">1592999572</span>,</span><br><span class="line">                <span class="attr">&quot;progress&quot;</span>: <span class="number">13</span>,</span><br><span class="line">                <span class="attr">&quot;badge&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;show_title&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;duration&quot;</span>: <span class="number">91</span>,</span><br><span class="line">                <span class="attr">&quot;current&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;total&quot;</span>: <span class="number">0</span>,</span><br><span class="line">                <span class="attr">&quot;new_desc&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;is_finish&quot;</span>: <span class="number">0</span>,</span><br><span class="line">                <span class="attr">&quot;is_fav&quot;</span>: <span class="number">0</span>,</span><br><span class="line">                <span class="attr">&quot;kid&quot;</span>: <span class="number">883617049</span>,</span><br><span class="line">                <span class="attr">&quot;tag_name&quot;</span>: <span class="string">&quot;演奏&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;live_status&quot;</span>: <span class="number">0</span></span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">&quot;title&quot;</span>: <span class="string">&quot;从清楚与混沌之分看Vtuber形象塑造&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;long_title&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;cover&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;covers&quot;</span>: [</span><br><span class="line">                    <span class="string">&quot;https://i0.hdslb.com/bfs/article/5ddb94dd1890c639622717c7083fb2917b4aa475.jpg&quot;</span></span><br><span class="line">                ],</span><br><span class="line">                <span class="attr">&quot;uri&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;history&quot;</span>: &#123;</span><br><span class="line">                    <span class="attr">&quot;oid&quot;</span>: <span class="number">268656</span>,</span><br><span class="line">                    <span class="attr">&quot;epid&quot;</span>: <span class="number">0</span>,</span><br><span class="line">                    <span class="attr">&quot;bvid&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">                    <span class="attr">&quot;page&quot;</span>: <span class="number">0</span>,</span><br><span class="line">                    <span class="attr">&quot;cid&quot;</span>: <span class="number">6233590</span>,</span><br><span class="line">                    <span class="attr">&quot;part&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">                    <span class="attr">&quot;business&quot;</span>: <span class="string">&quot;article-list&quot;</span>,</span><br><span class="line">                    <span class="attr">&quot;dt&quot;</span>: <span class="number">2</span></span><br><span class="line">                &#125;,</span><br><span class="line">                <span class="attr">&quot;videos&quot;</span>: <span class="number">0</span>,</span><br><span class="line">                <span class="attr">&quot;author_name&quot;</span>: <span class="string">&quot;普天一光&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;author_face&quot;</span>: <span class="string">&quot;http://i2.hdslb.com/bfs/face/3702810bdac3d5103d684e61dc5bc8492a74f904.jpg&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;author_mid&quot;</span>: <span class="number">6614889</span>,</span><br><span class="line">                <span class="attr">&quot;view_at&quot;</span>: <span class="number">1592998686</span>,</span><br><span class="line">                <span class="attr">&quot;progress&quot;</span>: <span class="number">0</span>,</span><br><span class="line">                <span class="attr">&quot;badge&quot;</span>: <span class="string">&quot;专栏&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;show_title&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;duration&quot;</span>: <span class="number">0</span>,</span><br><span class="line">                <span class="attr">&quot;current&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;total&quot;</span>: <span class="number">0</span>,</span><br><span class="line">                <span class="attr">&quot;new_desc&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;is_finish&quot;</span>: <span class="number">0</span>,</span><br><span class="line">                <span class="attr">&quot;is_fav&quot;</span>: <span class="number">0</span>,</span><br><span class="line">                <span class="attr">&quot;kid&quot;</span>: <span class="number">268656</span>,</span><br><span class="line">                <span class="attr">&quot;tag_name&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;live_status&quot;</span>: <span class="number">0</span></span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">&quot;title&quot;</span>: <span class="string">&quot;百妖谱&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;long_title&quot;</span>: <span class="string">&quot;庆忌（下）&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;cover&quot;</span>: <span class="string">&quot;http://i0.hdslb.com/bfs/archive/695a4566d05620a24c51d6eb935fa4767d673b45.jpg&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;covers&quot;</span>: <span class="literal">null</span>,</span><br><span class="line">                <span class="attr">&quot;uri&quot;</span>: <span class="string">&quot;https://www.bilibili.com/bangumi/play/ss26193&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;history&quot;</span>: &#123;</span><br><span class="line">                    <span class="attr">&quot;oid&quot;</span>: <span class="number">370908663</span>,</span><br><span class="line">                    <span class="attr">&quot;epid&quot;</span>: <span class="number">326789</span>,</span><br><span class="line">                    <span class="attr">&quot;bvid&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">                    <span class="attr">&quot;page&quot;</span>: <span class="number">0</span>,</span><br><span class="line">                    <span class="attr">&quot;cid&quot;</span>: <span class="number">199204975</span>,</span><br><span class="line">                    <span class="attr">&quot;part&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">                    <span class="attr">&quot;business&quot;</span>: <span class="string">&quot;pgc&quot;</span>,</span><br><span class="line">                    <span class="attr">&quot;dt&quot;</span>: <span class="number">3</span></span><br><span class="line">                &#125;,</span><br><span class="line">                <span class="attr">&quot;videos&quot;</span>: <span class="number">0</span>,</span><br><span class="line">                <span class="attr">&quot;author_name&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;author_face&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;author_mid&quot;</span>: <span class="number">0</span>,</span><br><span class="line">                <span class="attr">&quot;view_at&quot;</span>: <span class="number">1592985807</span>,</span><br><span class="line">                <span class="attr">&quot;progress&quot;</span>: <span class="number">533</span>,</span><br><span class="line">                <span class="attr">&quot;badge&quot;</span>: <span class="string">&quot;国创&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;show_title&quot;</span>: <span class="string">&quot;第8话 庆忌（下）&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;duration&quot;</span>: <span class="number">1402</span>,</span><br><span class="line">                <span class="attr">&quot;current&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;total&quot;</span>: <span class="number">12</span>,</span><br><span class="line">                <span class="attr">&quot;new_desc&quot;</span>: <span class="string">&quot;更新至第10话&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;is_finish&quot;</span>: <span class="number">0</span>,</span><br><span class="line">                <span class="attr">&quot;is_fav&quot;</span>: <span class="number">0</span>,</span><br><span class="line">                <span class="attr">&quot;kid&quot;</span>: <span class="number">26193</span>,</span><br><span class="line">                <span class="attr">&quot;tag_name&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;live_status&quot;</span>: <span class="number">0</span></span><br><span class="line">            &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</details>
+
+<h2 id="获取全部视频历史记录（旧）"><a href="#获取全部视频历史记录（旧）" class="headerlink" title="获取全部视频历史记录（旧）"></a>获取全部视频历史记录（旧）</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="http://api.bilibili.com/x/v2/history">http://api.bilibili.com/x/v2/history</a></p>
+</blockquote>
+<p><em>请求方式：GET</em></p>
+<p>认证方式：Cookie（SESSDATA）</p>
+<p><strong>url参数：</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>类型</th>
+<th>内容</th>
+<th>必要性</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>pn</td>
+<td>num</td>
+<td>页码</td>
+<td>非必要</td>
+<td>默认为1</td>
+</tr>
+<tr>
+<td>ps</td>
+<td>num</td>
+<td>每页项数</td>
+<td>非必要</td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>json回复：</strong></p>
+<p>根对象：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>内容</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>code</td>
+<td>num</td>
+<td>返回值</td>
+<td>0：成功<br />-101：账号未登录<br />-400：请求错误</td>
+</tr>
+<tr>
+<td>message</td>
+<td>str</td>
+<td>错误信息</td>
+<td>默认为0</td>
+</tr>
+<tr>
+<td>ttl</td>
+<td>num</td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td>array</td>
+<td>历史记录列表</td>
+<td></td>
+</tr>
+</tbody></table>
+<p><code>data</code>数组：</p>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>类型</th>
+<th>内容</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>obj</td>
+<td>历史观看1</td>
+<td></td>
+</tr>
+<tr>
+<td>n</td>
+<td>obj</td>
+<td>历史观看(n+1)</td>
+<td>按照观看顺序排列<br />项数为总计观看视频数</td>
+</tr>
+<tr>
+<td>……</td>
+<td>obj</td>
+<td>……</td>
+<td>……</td>
+</tr>
+</tbody></table>
+<p><code>data</code>数组中的对象：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>内容</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>aid</td>
+<td>num</td>
+<td>稿件avID</td>
+<td></td>
+</tr>
+<tr>
+<td>videos</td>
+<td>num</td>
+<td>视频分P总数</td>
+<td>默认为1</td>
+</tr>
+<tr>
+<td>tid</td>
+<td>num</td>
+<td>分区tID</td>
+<td></td>
+</tr>
+<tr>
+<td>tname</td>
+<td>str</td>
+<td>子分区名称</td>
+<td></td>
+</tr>
+<tr>
+<td>copyright</td>
+<td>num</td>
+<td>是否转载</td>
+<td>1：原创<br />2：转载</td>
+</tr>
+<tr>
+<td>pic</td>
+<td>str</td>
+<td>视频封面图片url</td>
+<td></td>
+</tr>
+<tr>
+<td>title</td>
+<td>str</td>
+<td>稿件标题</td>
+<td></td>
+</tr>
+<tr>
+<td>pubdate</td>
+<td>num</td>
+<td>稿件发布时间</td>
+<td>时间戳</td>
+</tr>
+<tr>
+<td>ctime</td>
+<td>num</td>
+<td>用户提交稿件的时间</td>
+<td>时间戳</td>
+</tr>
+<tr>
+<td>desc</td>
+<td>str</td>
+<td>视频简介</td>
+<td></td>
+</tr>
+<tr>
+<td>state</td>
+<td>num</td>
+<td>视频状态</td>
+<td>略，见<a href="/video/info.md#%E8%8E%B7%E5%8F%96%E8%A7%86%E9%A2%91%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF%EF%BC%88web%E7%AB%AF%EF%BC%89">获取视频详细信息（web端）</a>中的<code>state</code>备注</td>
+</tr>
+<tr>
+<td><del>attribute</del>（仅做历史性保留）</td>
+<td><del>num</del></td>
+<td><del>稿件属性位配置</del></td>
+<td>本字段已被删除<br /><del>略，见<a href="/video/info.md#%E8%8E%B7%E5%8F%96%E8%A7%86%E9%A2%91%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF%EF%BC%88web%E7%AB%AF%EF%BC%89">获取视频详细信息（web端）</a>中的<code>attribute</code>备注</del></td>
+</tr>
+<tr>
+<td>duration</td>
+<td>num</td>
+<td>视频总计持续时长（所有分P）</td>
+<td>单位为秒</td>
+</tr>
+<tr>
+<td>rights</td>
+<td>obj</td>
+<td>视频属性标志</td>
+<td>略，见<a href="/video/info.md#%E8%8E%B7%E5%8F%96%E8%A7%86%E9%A2%91%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF%EF%BC%88web%E7%AB%AF%EF%BC%89">获取视频详细信息（web端）</a>中的<code>rights</code>对象</td>
+</tr>
+<tr>
+<td>owner</td>
+<td>obj</td>
+<td>视频UP主信息</td>
+<td>略，见<a href="/video/info.md#%E8%8E%B7%E5%8F%96%E8%A7%86%E9%A2%91%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF%EF%BC%88web%E7%AB%AF%EF%BC%89">获取视频详细信息（web端）</a>中的<code>owner</code>对象</td>
+</tr>
+<tr>
+<td>stat</td>
+<td>obj</td>
+<td>视频状态数</td>
+<td>略，见<a href="/video/info.md#%E8%8E%B7%E5%8F%96%E8%A7%86%E9%A2%91%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF%EF%BC%88web%E7%AB%AF%EF%BC%89">获取视频详细信息（web端）</a>中的<code>stat</code>对象</td>
+</tr>
+<tr>
+<td>dynamic</td>
+<td>str</td>
+<td>视频同步发布的的动态的文字内容</td>
+<td>无为空</td>
+</tr>
+<tr>
+<td>cid</td>
+<td>num</td>
+<td>视频1P CID</td>
+<td></td>
+</tr>
+<tr>
+<td>dimension</td>
+<td>obj</td>
+<td>视频1P分辨率</td>
+<td>略，见<a href="/video/info.md#%E8%8E%B7%E5%8F%96%E8%A7%86%E9%A2%91%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF%EF%BC%88web%E7%AB%AF%EF%BC%89">获取视频详细信息（web端）</a>中的<code>dimension</code>对象</td>
+</tr>
+<tr>
+<td>bangumi</td>
+<td>obj</td>
+<td>番剧/影视信息</td>
+<td>非番剧/影视无此项</td>
+</tr>
+<tr>
+<td>cheese</td>
+<td>obj</td>
+<td>课程信息</td>
+<td>非课程无此项</td>
+</tr>
+<tr>
+<td>favorite</td>
+<td>bool</td>
+<td>是否已收藏</td>
+<td>true：已收藏<br />false：未收藏</td>
+</tr>
+<tr>
+<td>type</td>
+<td>num</td>
+<td>视频属性</td>
+<td>3：普通视频<br />4：剧集<br />10：课程</td>
+</tr>
+<tr>
+<td>sub_type</td>
+<td>num</td>
+<td>附视频属性</td>
+<td>0：普通视频<br />1：番剧<br />2：电影<br />3：纪录片<br />4：国创<br />5：电视剧<br />7：综艺</td>
+</tr>
+<tr>
+<td>device</td>
+<td>num</td>
+<td>观看平台代码</td>
+<td>1 3 5 7：手机端<br />2：web端<br />4 6：pad端<br />33：TV端<br />0：其他</td>
+</tr>
+<tr>
+<td>page</td>
+<td>obj</td>
+<td>最后观看的分P信息</td>
+<td></td>
+</tr>
+<tr>
+<td>count</td>
+<td>num</td>
+<td>分P数</td>
+<td>非投稿视频无此项</td>
+</tr>
+<tr>
+<td>progress</td>
+<td>num</td>
+<td>观看进度</td>
+<td>单位为秒</td>
+</tr>
+<tr>
+<td>view_at</td>
+<td>num</td>
+<td>观看时间</td>
+<td>时间戳</td>
+</tr>
+<tr>
+<td>kid</td>
+<td>num</td>
+<td>稿件avID</td>
+<td></td>
+</tr>
+<tr>
+<td>business</td>
+<td>str</td>
+<td>视频类型标识</td>
+<td>archive：用户投稿视频<br />pgc：番剧/影视<br />cheese：课程</td>
+</tr>
+<tr>
+<td>redirect_link</td>
+<td>str</td>
+<td>重定向url</td>
+<td></td>
+</tr>
+<tr>
+<td>bvid</td>
+<td>str</td>
+<td>稿件bvID</td>
+<td></td>
+</tr>
+</tbody></table>
+<p><code>data</code>数组中的对象<code>bangumi</code>对象：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>内容</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>cover</td>
+<td>str</td>
+<td>番剧封面图片url</td>
+<td></td>
+</tr>
+<tr>
+<td>ep_id</td>
+<td>num</td>
+<td>番剧epID</td>
+<td></td>
+</tr>
+<tr>
+<td>episode_status</td>
+<td>num</td>
+<td>？？？</td>
+<td></td>
+</tr>
+<tr>
+<td>follow</td>
+<td>num</td>
+<td>0</td>
+<td>作用尚不明确</td>
+</tr>
+<tr>
+<td>long_title</td>
+<td>str</td>
+<td>单集标题</td>
+<td></td>
+</tr>
+<tr>
+<td>season</td>
+<td>obj</td>
+<td>剧集信息</td>
+<td></td>
+</tr>
+<tr>
+<td>title</td>
+<td>str</td>
+<td>集数</td>
+<td></td>
+</tr>
+</tbody></table>
+<p><code>bangumi</code>中的<code>season</code>对象：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>内容</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>is_finish</td>
+<td>num</td>
+<td>是否完结</td>
+<td>0：连载中<br />1：完结</td>
+</tr>
+<tr>
+<td>newest_ep_id</td>
+<td>num</td>
+<td>最细一话epID</td>
+<td></td>
+</tr>
+<tr>
+<td>newest_ep_index</td>
+<td>str</td>
+<td>最细一话集数</td>
+<td></td>
+</tr>
+<tr>
+<td>season_id</td>
+<td>num</td>
+<td>番剧ssID</td>
+<td></td>
+</tr>
+<tr>
+<td>season_status</td>
+<td>num</td>
+<td>？？？</td>
+<td></td>
+</tr>
+<tr>
+<td>season_type</td>
+<td>num</td>
+<td>？？？</td>
+<td></td>
+</tr>
+<tr>
+<td>title</td>
+<td>str</td>
+<td>番剧标题</td>
+<td></td>
+</tr>
+<tr>
+<td>total_count</td>
+<td>num</td>
+<td>总集数</td>
+<td></td>
+</tr>
+</tbody></table>
+<p><code>data</code>数组中的对象<code>cheese</code>对象：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>内容</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>cover</td>
+<td>str</td>
+<td>课程封面图片url</td>
+<td></td>
+</tr>
+<tr>
+<td>long_title</td>
+<td>str</td>
+<td>完整标题</td>
+<td></td>
+</tr>
+<tr>
+<td>number</td>
+<td>str</td>
+<td>本集数</td>
+<td></td>
+</tr>
+<tr>
+<td>season_id</td>
+<td>num</td>
+<td>课程ssID</td>
+<td></td>
+</tr>
+<tr>
+<td>update_info</td>
+<td>str</td>
+<td>总集数</td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>示例：</strong></p>
+<p>查询当前视频历史记录列表</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">curl -G &#x27;http://api.bilibili.com/x/v2/history&#x27; \</span><br><span class="line">--data-urlencode &#x27;ps=5&#x27; \</span><br><span class="line">--data-urlencode &#x27;pn=1&#x27; \</span><br><span class="line">-b &#x27;SESSDATA=xxx&#x27;</span><br></pre></td></tr></table></figure>
+<details>
+<summary>查看响应示例：</summary>
+
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;code&quot;</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="attr">&quot;message&quot;</span>: <span class="string">&quot;0&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;ttl&quot;</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="attr">&quot;data&quot;</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;aid&quot;</span>: <span class="number">96523832</span>,</span><br><span class="line">            <span class="attr">&quot;videos&quot;</span>: <span class="number">1</span>,</span><br><span class="line">            <span class="attr">&quot;tid&quot;</span>: <span class="number">33</span>,</span><br><span class="line">            <span class="attr">&quot;tname&quot;</span>: <span class="string">&quot;连载动画&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;copyright&quot;</span>: <span class="number">2</span>,</span><br><span class="line">            <span class="attr">&quot;pic&quot;</span>: <span class="string">&quot;http://i0.hdslb.com/bfs/archive/dfc29be381565ee041a0ec9cfc7a32f8a63f76cd.jpg&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;title&quot;</span>: <span class="string">&quot;【1月】异度侵入 ID:INVADED 12【独家正版】&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;pubdate&quot;</span>: <span class="number">1584289800</span>,</span><br><span class="line">            <span class="attr">&quot;ctime&quot;</span>: <span class="number">1584289800</span>,</span><br><span class="line">            <span class="attr">&quot;desc&quot;</span>: <span class="string">&quot;#12&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;state&quot;</span>: <span class="number">0</span>,</span><br><span class="line">            <span class="attr">&quot;attribute&quot;</span>: <span class="number">338688</span>,</span><br><span class="line">            <span class="attr">&quot;duration&quot;</span>: <span class="number">1481</span>,</span><br><span class="line">            <span class="attr">&quot;redirect_url&quot;</span>: <span class="string">&quot;https://www.bilibili.com/bangumi/play/ep307457&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;rights&quot;</span>: &#123;</span><br><span class="line">                <span class="attr">&quot;bp&quot;</span>: <span class="number">0</span>,</span><br><span class="line">                <span class="attr">&quot;elec&quot;</span>: <span class="number">0</span>,</span><br><span class="line">                <span class="attr">&quot;download&quot;</span>: <span class="number">0</span>,</span><br><span class="line">                <span class="attr">&quot;movie&quot;</span>: <span class="number">0</span>,</span><br><span class="line">                <span class="attr">&quot;pay&quot;</span>: <span class="number">1</span>,</span><br><span class="line">                <span class="attr">&quot;hd5&quot;</span>: <span class="number">1</span>,</span><br><span class="line">                <span class="attr">&quot;no_reprint&quot;</span>: <span class="number">0</span>,</span><br><span class="line">                <span class="attr">&quot;autoplay&quot;</span>: <span class="number">0</span>,</span><br><span class="line">                <span class="attr">&quot;ugc_pay&quot;</span>: <span class="number">0</span>,</span><br><span class="line">                <span class="attr">&quot;is_cooperation&quot;</span>: <span class="number">0</span>,</span><br><span class="line">                <span class="attr">&quot;ugc_pay_preview&quot;</span>: <span class="number">0</span>,</span><br><span class="line">                <span class="attr">&quot;no_background&quot;</span>: <span class="number">0</span></span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="attr">&quot;owner&quot;</span>: &#123;</span><br><span class="line">                <span class="attr">&quot;mid&quot;</span>: <span class="number">928123</span>,</span><br><span class="line">                <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;哔哩哔哩番剧&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;face&quot;</span>: <span class="string">&quot;http://i1.hdslb.com/bfs/face/7a8412cbacb9fd18f40ddbbf0ad183e45afc1365.jpg&quot;</span></span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="attr">&quot;stat&quot;</span>: &#123;</span><br><span class="line">                <span class="attr">&quot;aid&quot;</span>: <span class="number">96523832</span>,</span><br><span class="line">                <span class="attr">&quot;view&quot;</span>: <span class="number">4772927</span>,</span><br><span class="line">                <span class="attr">&quot;danmaku&quot;</span>: <span class="number">108890</span>,</span><br><span class="line">                <span class="attr">&quot;reply&quot;</span>: <span class="number">48584</span>,</span><br><span class="line">                <span class="attr">&quot;favorite&quot;</span>: <span class="number">46</span>,</span><br><span class="line">                <span class="attr">&quot;coin&quot;</span>: <span class="number">61768</span>,</span><br><span class="line">                <span class="attr">&quot;share&quot;</span>: <span class="number">290</span>,</span><br><span class="line">                <span class="attr">&quot;now_rank&quot;</span>: <span class="number">0</span>,</span><br><span class="line">                <span class="attr">&quot;his_rank&quot;</span>: <span class="number">0</span>,</span><br><span class="line">                <span class="attr">&quot;like&quot;</span>: <span class="number">1241</span>,</span><br><span class="line">                <span class="attr">&quot;dislike&quot;</span>: <span class="number">0</span></span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="attr">&quot;dynamic&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;cid&quot;</span>: <span class="number">164789275</span>,</span><br><span class="line">            <span class="attr">&quot;dimension&quot;</span>: &#123;</span><br><span class="line">                <span class="attr">&quot;width&quot;</span>: <span class="number">1920</span>,</span><br><span class="line">                <span class="attr">&quot;height&quot;</span>: <span class="number">1080</span>,</span><br><span class="line">                <span class="attr">&quot;rotate&quot;</span>: <span class="number">0</span></span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="attr">&quot;favorite&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">            <span class="attr">&quot;type&quot;</span>: <span class="number">4</span>,</span><br><span class="line">            <span class="attr">&quot;sub_type&quot;</span>: <span class="number">1</span>,</span><br><span class="line">            <span class="attr">&quot;device&quot;</span>: <span class="number">3</span>,</span><br><span class="line">            <span class="attr">&quot;page&quot;</span>: &#123;</span><br><span class="line">                <span class="attr">&quot;cid&quot;</span>: <span class="number">164789275</span>,</span><br><span class="line">                <span class="attr">&quot;page&quot;</span>: <span class="number">1</span>,</span><br><span class="line">                <span class="attr">&quot;from&quot;</span>: <span class="string">&quot;vupload&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;part&quot;</span>: <span class="string">&quot;ID_INVADED_112.encoded&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;duration&quot;</span>: <span class="number">1481</span>,</span><br><span class="line">                <span class="attr">&quot;vid&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;weblink&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;dimension&quot;</span>: &#123;</span><br><span class="line">                    <span class="attr">&quot;width&quot;</span>: <span class="number">1920</span>,</span><br><span class="line">                    <span class="attr">&quot;height&quot;</span>: <span class="number">1080</span>,</span><br><span class="line">                    <span class="attr">&quot;rotate&quot;</span>: <span class="number">0</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="attr">&quot;bangumi&quot;</span>: &#123;</span><br><span class="line">                <span class="attr">&quot;ep_id&quot;</span>: <span class="number">307457</span>,</span><br><span class="line">                <span class="attr">&quot;title&quot;</span>: <span class="string">&quot;12&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;long_title&quot;</span>: <span class="string">&quot;CHANNELED&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;episode_status&quot;</span>: <span class="number">13</span>,</span><br><span class="line">                <span class="attr">&quot;follow&quot;</span>: <span class="number">0</span>,</span><br><span class="line">                <span class="attr">&quot;cover&quot;</span>: <span class="string">&quot;http://i0.hdslb.com/bfs/archive/dfc29be381565ee041a0ec9cfc7a32f8a63f76cd.jpg&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;season&quot;</span>: &#123;</span><br><span class="line">                    <span class="attr">&quot;season_id&quot;</span>: <span class="number">29310</span>,</span><br><span class="line">                    <span class="attr">&quot;title&quot;</span>: <span class="string">&quot;异度侵入 ID:INVADED&quot;</span>,</span><br><span class="line">                    <span class="attr">&quot;season_status&quot;</span>: <span class="number">13</span>,</span><br><span class="line">                    <span class="attr">&quot;is_finish&quot;</span>: <span class="number">1</span>,</span><br><span class="line">                    <span class="attr">&quot;total_count&quot;</span>: <span class="number">13</span>,</span><br><span class="line">                    <span class="attr">&quot;newest_ep_id&quot;</span>: <span class="number">307774</span>,</span><br><span class="line">                    <span class="attr">&quot;newest_ep_index&quot;</span>: <span class="string">&quot;13&quot;</span>,</span><br><span class="line">                    <span class="attr">&quot;season_type&quot;</span>: <span class="number">1</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="attr">&quot;progress&quot;</span>: <span class="number">277</span>,</span><br><span class="line">            <span class="attr">&quot;view_at&quot;</span>: <span class="number">1588831600</span>,</span><br><span class="line">            <span class="attr">&quot;kid&quot;</span>: <span class="number">29310</span>,</span><br><span class="line">            <span class="attr">&quot;business&quot;</span>: <span class="string">&quot;pgc&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;redirect_link&quot;</span>: <span class="string">&quot;https://www.bilibili.com/bangumi/play/ep307457&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;bvid&quot;</span>: <span class="string">&quot;BV1K7411f7uu&quot;</span></span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;aid&quot;</span>: <span class="number">497899395</span>,</span><br><span class="line">            <span class="attr">&quot;videos&quot;</span>: <span class="number">1</span>,</span><br><span class="line">            <span class="attr">&quot;tid&quot;</span>: <span class="number">189</span>,</span><br><span class="line">            <span class="attr">&quot;tname&quot;</span>: <span class="string">&quot;电脑装机&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;copyright&quot;</span>: <span class="number">1</span>,</span><br><span class="line">            <span class="attr">&quot;pic&quot;</span>: <span class="string">&quot;http://i0.hdslb.com/bfs/archive/fd4e0893b234ee729cf15198065eced98367ebfe.jpg&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;title&quot;</span>: <span class="string">&quot;600元的2007款iMac，如今过时了吗？&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;pubdate&quot;</span>: <span class="number">1587727345</span>,</span><br><span class="line">            <span class="attr">&quot;ctime&quot;</span>: <span class="number">1587708111</span>,</span><br><span class="line">            <span class="attr">&quot;desc&quot;</span>: <span class="string">&quot;苹果东西是真的保值，酷睿2现在都还能卖的这么贵。第一次使用4K画质进行拍摄，应该比以前清楚一些。如有问题请在评论区指出，谢谢！&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;state&quot;</span>: <span class="number">0</span>,</span><br><span class="line">            <span class="attr">&quot;attribute&quot;</span>: <span class="number">16768</span>,</span><br><span class="line">            <span class="attr">&quot;duration&quot;</span>: <span class="number">389</span>,</span><br><span class="line">            <span class="attr">&quot;mission_id&quot;</span>: <span class="number">13106</span>,</span><br><span class="line">            <span class="attr">&quot;rights&quot;</span>: &#123;</span><br><span class="line">                <span class="attr">&quot;bp&quot;</span>: <span class="number">0</span>,</span><br><span class="line">                <span class="attr">&quot;elec&quot;</span>: <span class="number">0</span>,</span><br><span class="line">                <span class="attr">&quot;download&quot;</span>: <span class="number">0</span>,</span><br><span class="line">                <span class="attr">&quot;movie&quot;</span>: <span class="number">0</span>,</span><br><span class="line">                <span class="attr">&quot;pay&quot;</span>: <span class="number">0</span>,</span><br><span class="line">                <span class="attr">&quot;hd5&quot;</span>: <span class="number">1</span>,</span><br><span class="line">                <span class="attr">&quot;no_reprint&quot;</span>: <span class="number">1</span>,</span><br><span class="line">                <span class="attr">&quot;autoplay&quot;</span>: <span class="number">1</span>,</span><br><span class="line">                <span class="attr">&quot;ugc_pay&quot;</span>: <span class="number">0</span>,</span><br><span class="line">                <span class="attr">&quot;is_cooperation&quot;</span>: <span class="number">0</span>,</span><br><span class="line">                <span class="attr">&quot;ugc_pay_preview&quot;</span>: <span class="number">0</span>,</span><br><span class="line">                <span class="attr">&quot;no_background&quot;</span>: <span class="number">0</span></span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="attr">&quot;owner&quot;</span>: &#123;</span><br><span class="line">                <span class="attr">&quot;mid&quot;</span>: <span class="number">3391089</span>,</span><br><span class="line">                <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;数字云糕Official&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;face&quot;</span>: <span class="string">&quot;http://i2.hdslb.com/bfs/face/238dfbca5dda5de2d5ba95ee4e99804714e2b5e2.jpg&quot;</span></span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="attr">&quot;stat&quot;</span>: &#123;</span><br><span class="line">                <span class="attr">&quot;aid&quot;</span>: <span class="number">497899395</span>,</span><br><span class="line">                <span class="attr">&quot;view&quot;</span>: <span class="number">23325</span>,</span><br><span class="line">                <span class="attr">&quot;danmaku&quot;</span>: <span class="number">92</span>,</span><br><span class="line">                <span class="attr">&quot;reply&quot;</span>: <span class="number">115</span>,</span><br><span class="line">                <span class="attr">&quot;favorite&quot;</span>: <span class="number">195</span>,</span><br><span class="line">                <span class="attr">&quot;coin&quot;</span>: <span class="number">132</span>,</span><br><span class="line">                <span class="attr">&quot;share&quot;</span>: <span class="number">23</span>,</span><br><span class="line">                <span class="attr">&quot;now_rank&quot;</span>: <span class="number">0</span>,</span><br><span class="line">                <span class="attr">&quot;his_rank&quot;</span>: <span class="number">0</span>,</span><br><span class="line">                <span class="attr">&quot;like&quot;</span>: <span class="number">555</span>,</span><br><span class="line">                <span class="attr">&quot;dislike&quot;</span>: <span class="number">0</span></span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="attr">&quot;dynamic&quot;</span>: <span class="string">&quot;#IMAC##APPLE##MAC# 苹果东西是真的保值，酷睿2现在都还能卖的这么贵。第一次使用4K画质进行拍摄，应该比以前清楚一些。&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;cid&quot;</span>: <span class="number">182570131</span>,</span><br><span class="line">            <span class="attr">&quot;dimension&quot;</span>: &#123;</span><br><span class="line">                <span class="attr">&quot;width&quot;</span>: <span class="number">1920</span>,</span><br><span class="line">                <span class="attr">&quot;height&quot;</span>: <span class="number">1080</span>,</span><br><span class="line">                <span class="attr">&quot;rotate&quot;</span>: <span class="number">0</span></span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="attr">&quot;favorite&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">            <span class="attr">&quot;type&quot;</span>: <span class="number">3</span>,</span><br><span class="line">            <span class="attr">&quot;sub_type&quot;</span>: <span class="number">0</span>,</span><br><span class="line">            <span class="attr">&quot;device&quot;</span>: <span class="number">3</span>,</span><br><span class="line">            <span class="attr">&quot;page&quot;</span>: &#123;</span><br><span class="line">                <span class="attr">&quot;cid&quot;</span>: <span class="number">182570131</span>,</span><br><span class="line">                <span class="attr">&quot;page&quot;</span>: <span class="number">1</span>,</span><br><span class="line">                <span class="attr">&quot;from&quot;</span>: <span class="string">&quot;vupload&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;part&quot;</span>: <span class="string">&quot;iMac&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;duration&quot;</span>: <span class="number">389</span>,</span><br><span class="line">                <span class="attr">&quot;vid&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;weblink&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;dimension&quot;</span>: &#123;</span><br><span class="line">                    <span class="attr">&quot;width&quot;</span>: <span class="number">1920</span>,</span><br><span class="line">                    <span class="attr">&quot;height&quot;</span>: <span class="number">1080</span>,</span><br><span class="line">                    <span class="attr">&quot;rotate&quot;</span>: <span class="number">0</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="attr">&quot;count&quot;</span>: <span class="number">1</span>,</span><br><span class="line">            <span class="attr">&quot;progress&quot;</span>: <span class="number">-1</span>,</span><br><span class="line">            <span class="attr">&quot;view_at&quot;</span>: <span class="number">1588828357</span>,</span><br><span class="line">            <span class="attr">&quot;kid&quot;</span>: <span class="number">497899395</span>,</span><br><span class="line">            <span class="attr">&quot;business&quot;</span>: <span class="string">&quot;archive&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;redirect_link&quot;</span>: <span class="string">&quot;https://www.bilibili.com/video/av497899395&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;bvid&quot;</span>: <span class="string">&quot;BV1NK41157EF&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</details>
+
+<h2 id="删除历史记录"><a href="#删除历史记录" class="headerlink" title="删除历史记录"></a>删除历史记录</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="http://api.bilibili.com/x/v2/history/delete">http://api.bilibili.com/x/v2/history/delete</a></p>
+</blockquote>
+<p><em>请求方式：POST</em></p>
+<p>认证方式：Cookie（SESSDATA）</p>
+<p><strong>正文参数（ application/x-www-form-urlencoded ）：</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>类型</th>
+<th>内容</th>
+<th>必要性</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>kid</td>
+<td>str</td>
+<td>删除的目标记录</td>
+<td>必要</td>
+<td>视频：archive_{稿件avID}<br />直播：live_{直播间ID}<br />专栏：article_{专栏cvID}<br />剧集：pgc_{剧集ssID}<br />文集：article-list_{文集rlID}</td>
+</tr>
+<tr>
+<td>csrf</td>
+<td>str</td>
+<td>CSRF Token（位于cookie）</td>
+<td>必要</td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>json回复：</strong></p>
+<p>根对象：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>内容</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>code</td>
+<td>num</td>
+<td>返回值</td>
+<td>0：成功<br />-101：账号未登录<br />-111：csrf校验失败<br />-400：请求错误</td>
+</tr>
+<tr>
+<td>message</td>
+<td>str</td>
+<td>错误信息</td>
+<td>默认为0</td>
+</tr>
+<tr>
+<td>ttl</td>
+<td>num</td>
+<td>1</td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>示例：</strong></p>
+<p>删除视频<code>av540580868</code>的观看历史记录</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">curl &#x27;http://api.bilibili.com/x/v2/history/delete&#x27; \</span><br><span class="line">--data-urlencode &#x27;kid=archive_540580868&#x27; \</span><br><span class="line">--data-urlencode &#x27;csrf=xxx&#x27; \</span><br><span class="line">-b &#x27;SESSDATA=xxx&#x27;</span><br></pre></td></tr></table></figure>
+<details>
+<summary>查看响应示例：</summary>
+
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;code&quot;</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="attr">&quot;message&quot;</span>: <span class="string">&quot;0&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;ttl&quot;</span>: <span class="number">1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</details>
+
+<h2 id="清空历史记录"><a href="#清空历史记录" class="headerlink" title="清空历史记录"></a>清空历史记录</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="http://api.bilibili.com/x/v2/history/clear">http://api.bilibili.com/x/v2/history/clear</a></p>
+</blockquote>
+<p><em>请求方式：POST</em></p>
+<p>认证方式：Cookie（SESSDATA）</p>
+<p><strong>正文参数（ application/x-www-form-urlencoded ）：</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>类型</th>
+<th>内容</th>
+<th>必要性</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>csrf</td>
+<td>str</td>
+<td>CSRF Token（位于cookie）</td>
+<td>必要</td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>json回复：</strong></p>
+<p>根对象：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>内容</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>code</td>
+<td>num</td>
+<td>返回值</td>
+<td>0：成功<br />-101：账号未登录<br />-111：csrf校验失败</td>
+</tr>
+<tr>
+<td>message</td>
+<td>str</td>
+<td>错误信息</td>
+<td>默认为0</td>
+</tr>
+<tr>
+<td>ttl</td>
+<td>num</td>
+<td>1</td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>示例：</strong></p>
+<p>清空历史记录</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">curl &#x27;http://api.bilibili.com/x/v2/history/clear&#x27; \</span><br><span class="line">--data-urlencode &#x27;csrf=xxx&#x27; \</span><br><span class="line">-b &#x27;SESSDATA=xxx&#x27;</span><br></pre></td></tr></table></figure>
+<details>
+<summary>查看响应示例：</summary>
+
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;code&quot;</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="attr">&quot;message&quot;</span>: <span class="string">&quot;0&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;ttl&quot;</span>: <span class="number">1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</details>
+
+<h2 id="停用历史记录"><a href="#停用历史记录" class="headerlink" title="停用历史记录"></a>停用历史记录</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="http://api.bilibili.com/x/v2/history/shadow/set">http://api.bilibili.com/x/v2/history/shadow/set</a></p>
+</blockquote>
+<p><em>请求方式：POST</em></p>
+<p>认证方式：Cookie（SESSDATA）</p>
+<p>该操作不会影响原有历史记录</p>
+<p><strong>正文参数（ application/x-www-form-urlencoded ）：</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>类型</th>
+<th>内容</th>
+<th>必要性</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>switch</td>
+<td>bool</td>
+<td>停用开关</td>
+<td>非必要</td>
+<td>true：停用<br />false：正常<br />默认为false</td>
+</tr>
+<tr>
+<td>csrf</td>
+<td>str</td>
+<td>CSRF Token（位于cookie）</td>
+<td>必要</td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>json回复：</strong></p>
+<p>根对象：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>内容</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>code</td>
+<td>num</td>
+<td>返回值</td>
+<td>0：成功<br />-101：账号未登录<br />-111：csrf校验失败</td>
+</tr>
+<tr>
+<td>message</td>
+<td>str</td>
+<td>错误信息</td>
+<td>默认为0</td>
+</tr>
+<tr>
+<td>ttl</td>
+<td>num</td>
+<td>1</td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>示例：</strong></p>
+<p>停用历史记录功能</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">curl &#x27;http://api.bilibili.com/x/v2/history/shadow/set&#x27; \</span><br><span class="line">--data-urlencode &#x27;switch=true&#x27; \</span><br><span class="line">--data-urlencode &#x27;csrf=xxx&#x27; \</span><br><span class="line">-b &#x27;SESSDATA=xxx&#x27;</span><br></pre></td></tr></table></figure>
+<details>
+<summary>查看响应示例：</summary>
+
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;code&quot;</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="attr">&quot;message&quot;</span>: <span class="string">&quot;0&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;ttl&quot;</span>: <span class="number">1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</details>
+
+<h2 id="查询历史记录停用状态"><a href="#查询历史记录停用状态" class="headerlink" title="查询历史记录停用状态"></a>查询历史记录停用状态</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="http://api.bilibili.com/x/v2/history/shadow">http://api.bilibili.com/x/v2/history/shadow</a></p>
+</blockquote>
+<p><em>请求方式：GET</em></p>
+<p>认证方式：Cookie（SESSDATA）</p>
+<p><strong>json回复：</strong></p>
+<p>根对象：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>内容</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>code</td>
+<td>num</td>
+<td>返回值</td>
+<td>0：成功<br />-101：账号未登录</td>
+</tr>
+<tr>
+<td>message</td>
+<td>str</td>
+<td>错误信息</td>
+<td>默认为0</td>
+</tr>
+<tr>
+<td>ttl</td>
+<td>num</td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td>bool</td>
+<td>停用状态</td>
+<td>true：停用<br />false：正常</td>
+</tr>
+</tbody></table>
+<p><strong>示例：</strong></p>
+<p>当前状态为未停用视频历史记录</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl &#x27;http://api.bilibili.com/x/v2/history/shadow&#x27; \</span><br><span class="line">-b &#x27;SESSDATA=xxx&#x27;</span><br></pre></td></tr></table></figure>
+<details>
+<summary>查看响应示例：</summary>
+
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;code&quot;</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="attr">&quot;message&quot;</span>: <span class="string">&quot;0&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;ttl&quot;</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="attr">&quot;data&quot;</span>: <span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</details>
+
+                
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+<script src="/js/darkmode.js"></script>
+
+
+<script src="/js/live2d.js"></script>
+<script src="/js/waifu-tips.js"></script>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="waifu">
+  <div class="waifu-tips"></div>
+  <canvas id="live2d" class="live2d"></canvas>
+  <div class="waifu-tool">
+      <span class="fui-home"></span>
+      <span class="fui-chat"></span>
+      <span class="fui-eye"></span>
+      <span class="fui-user"></span>
+      <span class="fui-photo"></span>
+      <span class="fui-info-circle"></span>
+      <span class="fui-cross"></span>
+  </div>
+</div>
+<script type="text/javascript">
+  initModel("/live2d/waifu-tips.json")
+</script>
+
+
+
+
+
+</html>

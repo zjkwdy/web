@@ -1,0 +1,618 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="baidu-site-verification" content="code-MHmXGGvymI" />
+    <link rel="stylesheet" type="text/css" href="/css/waifu.css"/>
+    <title>IMin Lab</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="IMin,"> 
+    <meta name="description" content="IMin一个憨批的博客,"> 
+    <meta name="author" content="IMin"> 
+    <link rel="alternative" href="atom.xml" title="IMin Lab" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+<link rel="stylesheet" href="/css/bilibili_iconfont.css">
+
+    
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+    
+<link rel="stylesheet" href="/css/bilibili_iconfont.css">
+
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+    
+<link rel="stylesheet" href="/css/waifu.css">
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">IMin Lab</span>
+    <div id="loader"></div>
+    <div id="single" class="page">
+    <div id="top">
+        <a class="iconfont icon-left image-icon" href="javascript:history.back()"></a>
+    </div>
+    <div class="section">
+        <div class="article">
+            <div class="main">
+                <div class="content">
+                
+                        <h1 id="二维码登录"><a href="#二维码登录" class="headerlink" title="二维码登录"></a>二维码登录</h1><p>web端流程&amp;逻辑：</p>
+<ol>
+<li>获取<code>二维码内容url</code>以及<code>密钥</code>，以<code>二维码内容url</code>生成二维码，等待手机客户端扫描</li>
+<li>以<code>密钥</code>作为参数进行POST</li>
+<li>if  <code>code</code> == <code>true</code> goto <code>6</code>                               else goto 4（是否已经确认）</li>
+<li>if <code>data</code> == <code>-4</code>   goto <code>2</code>                                  else goto 5（是否已经扫描）</li>
+<li>if <code>data</code> == <code>-5</code>   goto <code>3</code> &amp; 提示<code>已扫描</code>        else goto <code>1</code>&amp;提示<code>二维码超时或错误</code>（密钥是否有效）</li>
+<li>成功后会自动配置cookie 如需登录游戏分站则访问<code>data</code>.<code>url</code>中的url</li>
+</ol>
+<p>TV端流程&amp;逻辑：</p>
+<ol>
+<li>获取<code>二维码内容url</code>以及<code>密钥</code>，以<code>二维码内容url</code>生成二维码，等待手机客户端扫描</li>
+<li>以<code>密钥</code>作为参数进行POST</li>
+<li>if <code>code</code> == <code>0</code>  提示<code>扫码成功</code>并存储<code>access_key</code>于<code>refersh_key</code> else goto <code>4</code></li>
+<li>if <code>code</code> == <code>86039</code>  提示<code>未扫描</code>&amp;goto <code>2</code>                                         else goto <code>5</code></li>
+<li>if <code>code</code> == <code>86038</code> 提示<code>二维码超时或错误</code>&amp;goto <code>1</code></li>
+</ol>
+<img src="/imgs/2233login.png"/>
+
+
+
+<hr>
+<ul>
+<li><a href="#%E7%94%B3%E8%AF%B7%E4%BA%8C%E7%BB%B4%E7%A0%81URL%E5%8F%8A%E6%89%AB%E7%A0%81%E5%AF%86%E9%92%A5%EF%BC%88web%E7%AB%AF%EF%BC%89">申请二维码URL及扫码密钥（web端）</a></li>
+<li><a href="#%E4%BD%BF%E7%94%A8%E6%89%AB%E7%A0%81%E7%99%BB%E5%BD%95%EF%BC%88web%E7%AB%AF%EF%BC%89">使用扫码登录（web端）</a></li>
+<li><a href="#%E7%94%B3%E8%AF%B7%E4%BA%8C%E7%BB%B4%E7%A0%81URL%E5%8F%8A%E6%89%AB%E7%A0%81%E5%AF%86%E9%92%A5%EF%BC%88TV%E7%AB%AF%EF%BC%89">申请二维码URL及扫码密钥（TV端）</a></li>
+<li><a href="#%E4%BD%BF%E7%94%A8%E6%89%AB%E7%A0%81%E7%99%BB%E5%BD%95%EF%BC%88TV%E7%AB%AF%EF%BC%89">使用扫码登录（TV端）</a></li>
+</ul>
+<hr>
+<h2 id="申请二维码URL及扫码密钥（web端）"><a href="#申请二维码URL及扫码密钥（web端）" class="headerlink" title="申请二维码URL及扫码密钥（web端）"></a>申请二维码URL及扫码密钥（web端）</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="http://passport.bilibili.com/qrcode/getLoginUrl">http://passport.bilibili.com/qrcode/getLoginUrl</a></p>
+</blockquote>
+<p><em>请求方式：GET</em></p>
+<p>密钥超时为180秒</p>
+<p><strong>json回复：</strong></p>
+<p>根对象：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>内容</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>code</td>
+<td>num</td>
+<td>返回值</td>
+<td>0：成功</td>
+</tr>
+<tr>
+<td>status</td>
+<td>bool</td>
+<td>true</td>
+<td>作用尚不明确</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>num</td>
+<td>请求时间</td>
+<td>时间戳</td>
+</tr>
+<tr>
+<td>data</td>
+<td>obj</td>
+<td>信息本体</td>
+<td></td>
+</tr>
+</tbody></table>
+<p><code>data</code>对象：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>内容</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>url</td>
+<td>str</td>
+<td>二维码内容url</td>
+<td>恒为87字符</td>
+</tr>
+<tr>
+<td>oauthKey</td>
+<td>str</td>
+<td>扫码登录秘钥</td>
+<td>恒为32字符</td>
+</tr>
+</tbody></table>
+<p><strong>示例：</strong></p>
+<p>用申请到的<code>data</code>.<code>url</code>中的值生成二维码，等待手机客户端扫描，并将<code>data</code>.<code>oauthKey</code>保存等待使用</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl &#x27;http://passport.bilibili.com/qrcode/getLoginUrl&#x27;</span><br></pre></td></tr></table></figure>
+<details>
+<summary>查看响应示例：</summary>
+
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="attr">&quot;code&quot;</span>: <span class="number">0</span>,</span><br><span class="line">	<span class="attr">&quot;status&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">	<span class="attr">&quot;ts&quot;</span>: <span class="number">1583314311</span>,</span><br><span class="line">	<span class="attr">&quot;data&quot;</span>: &#123;</span><br><span class="line">		<span class="attr">&quot;url&quot;</span>: <span class="string">&quot;https://passport.bilibili.com/qrcode/h5/login?oauthKey=c3bd5286a2b40a822f5f60e9bf3f602e&quot;</span>,</span><br><span class="line">		<span class="attr">&quot;oauthKey&quot;</span>: <span class="string">&quot;c3bd5286a2b40a822f5f60e9bf3f602e&quot;</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</details>
+
+<h2 id="使用扫码登录（web端）"><a href="#使用扫码登录（web端）" class="headerlink" title="使用扫码登录（web端）"></a>使用扫码登录（web端）</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="http://passport.bilibili.com/qrcode/getLoginInfo">http://passport.bilibili.com/qrcode/getLoginInfo</a></p>
+</blockquote>
+<p><em>请求方式：POST</em></p>
+<p>密钥超时为180秒</p>
+<p>验证登录成功后会进行设置以下cookie项：</p>
+<p> <code>DedeUserID</code> <code>DedeUserID__ckMd5</code> <code>SESSDATA</code> <code>bili_jct</code></p>
+<p><strong>正文参数（ application/x-www-form-urlencoded ）：</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>类型</th>
+<th>内容</th>
+<th>必要性</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>oauthKey</td>
+<td>str</td>
+<td>扫码登录秘钥</td>
+<td>必要</td>
+<td></td>
+</tr>
+<tr>
+<td>gourl</td>
+<td>str</td>
+<td>跳转url</td>
+<td>非必要</td>
+<td>默认为<a target="_blank" rel="noopener" href="http://www.bilibili.com/">http://www.bilibili.com</a></td>
+</tr>
+</tbody></table>
+<p><strong>json回复：</strong></p>
+<p>根对象：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>内容</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>code</td>
+<td>num</td>
+<td>返回值</td>
+<td>0：成功</td>
+</tr>
+<tr>
+<td>message</td>
+<td>str</td>
+<td>错误信息</td>
+<td>正确无</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>num</td>
+<td>扫码时间</td>
+<td>错误无</td>
+</tr>
+<tr>
+<td>status</td>
+<td>bool</td>
+<td>扫码是否成功</td>
+<td>true：成功<br />false：未成功</td>
+</tr>
+<tr>
+<td>data</td>
+<td>正确时：obj<br />错误时：num</td>
+<td>正确时：游戏分站url<br />错误时：错误代码</td>
+<td>未成功时：<br />-1：密钥错误<br />-2：密钥超时<br />-4：未扫描<br />-5：未确认</td>
+</tr>
+</tbody></table>
+<p>data 对象：<br>| 字段 | 类型 | 内容                | 备注 |<br>| —- | —- | ——————- | —- |<br>| url  | str  | 游戏分站跨域登录url |      |</p>
+<p><strong>示例：</strong></p>
+<p>使用扫描秘钥<code>c3bd5286a2b40a822f5f60e9bf3f602e</code>登录</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">curl &quot;http://passport.bilibili.com/qrcode/getLoginInfo&quot;\</span><br><span class="line">--data-urlencode &#x27;oauthKey=c3bd5286a2b40a822f5f60e9bf3f602e&#x27; \</span><br><span class="line">-c &#x27;cookie.txt&#x27;</span><br></pre></td></tr></table></figure>
+<p>当密钥正确时但未扫描时<code>status</code>为<code>false</code>，<code>data</code>为num值<code>-4</code></p>
+<details>
+<summary>查看响应示例：</summary>
+
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;status&quot;</span>:<span class="literal">false</span>,</span><br><span class="line">    <span class="attr">&quot;data&quot;</span>:<span class="number">-4</span>,</span><br><span class="line">    <span class="attr">&quot;message&quot;</span>:<span class="string">&quot;Can&#x27;t scan~&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</details>
+
+<p>扫描成功但手机端未确认时<code>status</code>为<code>false</code>，<code>data</code>为num值<code>-5</code></p>
+<details>
+<summary>查看响应示例：</summary>
+
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;status&quot;</span>:<span class="literal">false</span>,</span><br><span class="line">    <span class="attr">&quot;data&quot;</span>:<span class="number">-5</span>,</span><br><span class="line">    <span class="attr">&quot;message&quot;</span>:<span class="string">&quot;Can&#x27;t confirm~&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</details>
+
+<p>扫描成功手机端确认登录后，<code>status</code>为<code>true</code>，<code>data</code>为对象，并向浏览器写入cookie</p>
+<details>
+<summary>查看响应示例：</summary>
+
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="attr">&quot;code&quot;</span>: <span class="number">0</span>,</span><br><span class="line">	<span class="attr">&quot;status&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">	<span class="attr">&quot;ts&quot;</span>: <span class="number">1583315474</span>,</span><br><span class="line">	<span class="attr">&quot;data&quot;</span>: &#123;</span><br><span class="line">		<span class="attr">&quot;url&quot;</span>: <span class="string">&quot;https://passport.biligame.com/crossDomain?DedeUserID=***&amp;DedeUserID__ckMd5=***&amp;Expires=***&amp;SESSDATA=***&amp;bili_jct=***&amp;gourl=http%3A%2F%2Fwww.bilibili.com&quot;</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</details>
+
+<p><strong>响应头部抓包信息：</strong></p>
+<p>可明显看见设置了几个cookie（填入浏览器即可成功登录）</p>
+<details>
+<summary>查看响应示例：</summary>
+
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">HTTP/1.1</span> <span class="number">200</span> OK</span><br><span class="line"><span class="attribute">Date</span><span class="punctuation">: </span>Wed, 04 Mar 2020 10:36:37 GMT</span><br><span class="line"><span class="attribute">Content-Type</span><span class="punctuation">: </span>application/json;charset=UTF-8</span><br><span class="line"><span class="attribute">Transfer-Encoding</span><span class="punctuation">: </span>chunked</span><br><span class="line"><span class="attribute">Connection</span><span class="punctuation">: </span>keep-alive</span><br><span class="line"><span class="attribute">Server</span><span class="punctuation">: </span>Apache-Coyote/1.1</span><br><span class="line"><span class="attribute">Set-Cookie</span><span class="punctuation">: </span>sid=***; Domain=.bilibili.com; Expires=Thu, 04-Mar-2021 10:36:37 GMT; Path=/</span><br><span class="line"><span class="attribute">Set-Cookie</span><span class="punctuation">: </span>DedeUserID=***; Domain=.bilibili.com; Expires=Mon, 31-Aug-2020 10:19:57 GMT; Path=/</span><br><span class="line"><span class="attribute">Set-Cookie</span><span class="punctuation">: </span>DedeUserID__ckMd5=***; Domain=.bilibili.com; Expires=Mon, 31-Aug-2020 10:19:57 GMT; Path=/</span><br><span class="line"><span class="attribute">Set-Cookie</span><span class="punctuation">: </span>SESSDATA=***; Domain=.bilibili.com; Expires=Mon, 31-Aug-2020 10:19:57 GMT; Path=/; HttpOnly</span><br><span class="line"><span class="attribute">Set-Cookie</span><span class="punctuation">: </span>bili_jct=***; Domain=.bilibili.com; Expires=Mon, 31-Aug-2020 10:19:57 GMT; Path=/</span><br><span class="line"><span class="attribute">Expires</span><span class="punctuation">: </span>Wed, 04 Mar 2020 10:36:36 GMT</span><br><span class="line"><span class="attribute">Cache-Control</span><span class="punctuation">: </span>no-cache</span><br><span class="line"><span class="attribute">X-Cache-Webcdn</span><span class="punctuation">: </span>BYPASS from ks-sxhz-dx-w-01</span><br></pre></td></tr></table></figure>
+</details>
+
+<p><strong>游戏分站跨域登录url：</strong></p>
+<p>游戏分站跨域登录url与cookie的值一一对应，可用于不方便设置cookie的场合提取使用</p>
+<p><a target="_blank" rel="noopener" href="https://passport.biligame.com/crossDomain">https://passport.biligame.com/crossDomain</a>?</p>
+<p>DedeUserID=(登录UID)&amp;</p>
+<p>DedeUserID__ckMd5=(登录UID MD5值)&amp;</p>
+<p>Expires=(过期时间 秒)&amp;</p>
+<p>SESSDATA=(登录token)&amp;</p>
+<p>bili_jct=(csrf)&amp;</p>
+<p>gourl=(跳转网址 默认为主页)</p>
+<h2 id="申请二维码URL及扫码密钥（TV端）"><a href="#申请二维码URL及扫码密钥（TV端）" class="headerlink" title="申请二维码URL及扫码密钥（TV端）"></a>申请二维码URL及扫码密钥（TV端）</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="http://passport.bilibili.com/x/passport-tv-login/qrcode/auth_code">http://passport.bilibili.com/x/passport-tv-login/qrcode/auth_code</a> </p>
+</blockquote>
+<p><em>请求方式：POST</em></p>
+<p>鉴权方式：appkey</p>
+<p>密钥超时为180秒</p>
+<p>本接口可申请用于APP方式登录的<code>access_key</code></p>
+<p><strong>正文参数（ application/x-www-form-urlencoded ）：</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>类型</th>
+<th>内容</th>
+<th>必要性</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>appkey</td>
+<td>str</td>
+<td>APP密钥</td>
+<td>APP方式必要</td>
+<td>仅可用<code>4409e2ce8ffd12b8</code></td>
+</tr>
+<tr>
+<td>local_id</td>
+<td>str</td>
+<td>TV端ID</td>
+<td>TV端必要</td>
+<td>可为0</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>num</td>
+<td>当前时间戳</td>
+<td>APP方式必要</td>
+<td></td>
+</tr>
+<tr>
+<td>sign</td>
+<td>str</td>
+<td>APP签名</td>
+<td>APP方式必要</td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>json回复：</strong></p>
+<p>根对象：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>内容</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>code</td>
+<td>num</td>
+<td>返回值</td>
+<td>0：成功<br />-3：API校验密匙错误<br />-400：请求错误</td>
+</tr>
+<tr>
+<td>message</td>
+<td>str</td>
+<td>错误信息</td>
+<td>默认为0</td>
+</tr>
+<tr>
+<td>ttl</td>
+<td>num</td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td>obj</td>
+<td>信息本体</td>
+<td></td>
+</tr>
+</tbody></table>
+<p><code>data</code>对象：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>内容</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>url</td>
+<td>str</td>
+<td>二维码内容url</td>
+<td>恒为87字符</td>
+</tr>
+<tr>
+<td>oauthKey</td>
+<td>str</td>
+<td>扫码登录秘钥</td>
+<td>恒为32字符</td>
+</tr>
+</tbody></table>
+<p><strong>示例：</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">curl &#x27;http://passport.bilibili.com/x/passport-tv-login/qrcode/auth_code&#x27; \</span><br><span class="line">--data-urlencode &#x27;appkey=4409e2ce8ffd12b8&#x27; \</span><br><span class="line">--data-urlencode &#x27;local_id=0&#x27; \</span><br><span class="line">--data-urlencode &#x27;ts=0&#x27; \</span><br><span class="line">--data-urlencode &#x27;sign=e134154ed6add881d28fbdf68653cd9c&#x27;</span><br></pre></td></tr></table></figure>
+<details>
+<summary>查看响应示例：</summary>
+
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;code&quot;</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="attr">&quot;message&quot;</span>: <span class="string">&quot;0&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;ttl&quot;</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="attr">&quot;data&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;url&quot;</span>: <span class="string">&quot;https://passport.bilibili.com/x/passport-tv-login/h5/qrcode/auth?auth_code=0eeb635a64526709d70cb4c854a3b001&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;auth_code&quot;</span>: <span class="string">&quot;0eeb635a64526709d70cb4c854a3b001&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</details>
+
+<h2 id="使用扫码登录（TV端）"><a href="#使用扫码登录（TV端）" class="headerlink" title="使用扫码登录（TV端）"></a>使用扫码登录（TV端）</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="http://passport.bilibili.com/x/passport-tv-login/qrcode/poll">http://passport.bilibili.com/x/passport-tv-login/qrcode/poll</a></p>
+</blockquote>
+<p><em>请求方式：POST</em></p>
+<p>鉴权方式：appkey</p>
+<p>密钥超时为180秒</p>
+<p>验证登录成功后会返回可用于APP方式登录的<code>access_key</code>以及<code>refresh_token</code></p>
+<p><strong>正文参数（ application/x-www-form-urlencoded ）：</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>类型</th>
+<th>内容</th>
+<th>必要性</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>appkey</td>
+<td>str</td>
+<td>APP密钥</td>
+<td>APP方式必要</td>
+<td>仅可用<code>4409e2ce8ffd12b8</code></td>
+</tr>
+<tr>
+<td>auth_code</td>
+<td>str</td>
+<td>扫码秘钥</td>
+<td>必要</td>
+<td></td>
+</tr>
+<tr>
+<td>local_id</td>
+<td>str</td>
+<td>TV端ID</td>
+<td>TV端必要</td>
+<td>可为0</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>num</td>
+<td>当前时间戳</td>
+<td>APP方式必要</td>
+<td></td>
+</tr>
+<tr>
+<td>sign</td>
+<td>str</td>
+<td>APP签名</td>
+<td>APP方式必要</td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>json回复：</strong></p>
+<p>根对象：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>内容</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>code</td>
+<td>num</td>
+<td>返回值</td>
+<td>0：成功<br />-3：API校验密匙错误<br />-400：请求错误<br />86038：二维码已失效<br />86039：二维码尚未确认</td>
+</tr>
+<tr>
+<td>message</td>
+<td>str</td>
+<td>错误信息</td>
+<td>默认为0</td>
+</tr>
+<tr>
+<td>ttl</td>
+<td>num</td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td>有效时：obj<br />无效时：null</td>
+<td>信息本体</td>
+<td></td>
+</tr>
+</tbody></table>
+<p><code>data</code>对象：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>内容</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>mid</td>
+<td>num</td>
+<td>登录用户UID</td>
+<td></td>
+</tr>
+<tr>
+<td>access_token</td>
+<td>str</td>
+<td>APP登录Token</td>
+<td></td>
+</tr>
+<tr>
+<td>refresh_token</td>
+<td>str</td>
+<td>APP刷新Token</td>
+<td></td>
+</tr>
+<tr>
+<td>expires_in</td>
+<td>num</td>
+<td>有效时间</td>
+<td>单位为秒  一般为30天</td>
+</tr>
+</tbody></table>
+<p><strong>示例：</strong></p>
+<p>使用扫描秘钥<code>6214464b3025541abf6f654cf7569a01</code>进行验证登录</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">curl &#x27;http://passport.bilibili.com/x/passport-tv-login/qrcode/poll&#x27; \</span><br><span class="line">--data-urlencode &#x27;appkey=4409e2ce8ffd12b8&#x27; \</span><br><span class="line">--data-urlencode &#x27;auth_code=6214464b3025541abf6f654cf7569a01&#x27; \</span><br><span class="line">--data-urlencode &#x27;local_id=0&#x27; \</span><br><span class="line">--data-urlencode &#x27;ts=0&#x27; \</span><br><span class="line">--data-urlencode &#x27;sign=87de3d0fee7c3f4facd244537238914e&#x27; \</span><br></pre></td></tr></table></figure>
+<details>
+<summary>查看响应示例：</summary>
+
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;code&quot;</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="attr">&quot;message&quot;</span>: <span class="string">&quot;0&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;ttl&quot;</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="attr">&quot;data&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;mid&quot;</span>: <span class="number">293793435</span>,</span><br><span class="line">        <span class="attr">&quot;access_token&quot;</span>: <span class="string">&quot;***&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;refresh_token&quot;</span>: <span class="string">&quot;***&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;expires_in&quot;</span>: <span class="number">2592000</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</details>
+                
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+<script src="/js/darkmode.js"></script>
+
+
+<script src="/js/live2d.js"></script>
+<script src="/js/waifu-tips.js"></script>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="waifu">
+  <div class="waifu-tips"></div>
+  <canvas id="live2d" class="live2d"></canvas>
+  <div class="waifu-tool">
+      <span class="fui-home"></span>
+      <span class="fui-chat"></span>
+      <span class="fui-eye"></span>
+      <span class="fui-user"></span>
+      <span class="fui-photo"></span>
+      <span class="fui-info-circle"></span>
+      <span class="fui-cross"></span>
+  </div>
+</div>
+<script type="text/javascript">
+  initModel("/live2d/waifu-tips.json")
+</script>
+
+
+
+
+
+</html>

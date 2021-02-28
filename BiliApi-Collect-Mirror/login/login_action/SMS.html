@@ -1,0 +1,511 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="baidu-site-verification" content="code-MHmXGGvymI" />
+    <link rel="stylesheet" type="text/css" href="/css/waifu.css"/>
+    <title>IMin Lab</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="IMin,"> 
+    <meta name="description" content="IMin一个憨批的博客,"> 
+    <meta name="author" content="IMin"> 
+    <link rel="alternative" href="atom.xml" title="IMin Lab" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+<link rel="stylesheet" href="/css/bilibili_iconfont.css">
+
+    
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+    
+<link rel="stylesheet" href="/css/bilibili_iconfont.css">
+
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+    
+<link rel="stylesheet" href="/css/waifu.css">
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">IMin Lab</span>
+    <div id="loader"></div>
+    <div id="single" class="page">
+    <div id="top">
+        <a class="iconfont icon-left image-icon" href="javascript:history.back()"></a>
+    </div>
+    <div class="section">
+        <div class="article">
+            <div class="main">
+                <div class="content">
+                
+                        <h1 id="短信登录"><a href="#短信登录" class="headerlink" title="短信登录"></a>短信登录</h1><p>web端短信登录流程：</p>
+<ol>
+<li><a href="readme.md">完成人机验证</a></li>
+<li>发送短信，使用国际地区代码<code>cid</code>+手机号码<code>tel</code>+登录密钥<code>key</code>+极验<code>challenge</code>+验证结果<code>validate</code>+验证结果<code>seccode</code></li>
+<li>提交短信验证码以验证登录操作，使用国际地区代码<code>cid</code>+手机号码<code>tel</code>+短信验证码<code>smsCode</code></li>
+</ol>
+<hr>
+<ul>
+<li><a href="#%E8%8E%B7%E5%8F%96%E5%9B%BD%E9%99%85%E5%9C%B0%E5%8C%BA%E4%BB%A3%E7%A0%81%EF%BC%88web%E7%AB%AF%EF%BC%89">获取国际地区代码（web端）</a></li>
+<li><a href="#%E5%8F%91%E9%80%81%E7%9F%AD%E4%BF%A1%E9%AA%8C%E8%AF%81%E7%A0%81%EF%BC%88web%E7%AB%AF%EF%BC%89">发送短信验证码（web端）</a></li>
+<li><a href="#%E4%BD%BF%E7%94%A8%E7%9F%AD%E4%BF%A1%E9%AA%8C%E8%AF%81%E7%A0%81%E7%99%BB%E5%BD%95%EF%BC%88web%E7%AB%AF%EF%BC%89">使用短信验证码登录（web端）</a></li>
+</ul>
+<hr>
+<h2 id="获取国际地区代码（web端）"><a href="#获取国际地区代码（web端）" class="headerlink" title="获取国际地区代码（web端）"></a>获取国际地区代码（web端）</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="http://passport.bilibili.com/web/generic/country/list">http://passport.bilibili.com/web/generic/country/list</a></p>
+</blockquote>
+<p><em>请求方式：GET</em></p>
+<p><strong>json回复：</strong></p>
+<p>根对象：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>内容</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>code</td>
+<td>num</td>
+<td>返回值</td>
+<td>0：成功</td>
+</tr>
+<tr>
+<td>data</td>
+<td>obj</td>
+<td>数据本体</td>
+<td></td>
+</tr>
+</tbody></table>
+<p><code>data</code>对象：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>内容</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>common</td>
+<td>array</td>
+<td>常用国家或地区</td>
+<td></td>
+</tr>
+<tr>
+<td>others</td>
+<td>array</td>
+<td>其他国家或地区</td>
+<td></td>
+</tr>
+</tbody></table>
+<p><code>data</code>中的<code>common</code>和<code>others</code>数组：</p>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>类型</th>
+<th>内容</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>obj</td>
+<td>国家或地区1</td>
+<td></td>
+</tr>
+<tr>
+<td>n</td>
+<td>obj</td>
+<td>国家或地区(n+1)</td>
+<td></td>
+</tr>
+<tr>
+<td>……</td>
+<td>obj</td>
+<td>……</td>
+<td>……</td>
+</tr>
+</tbody></table>
+<p><code>common</code>和<code>others</code>数组中的对象：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>内容</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>id</td>
+<td>num</td>
+<td>国际代码值</td>
+<td></td>
+</tr>
+<tr>
+<td>cname</td>
+<td>str</td>
+<td>国家或地区名</td>
+<td></td>
+</tr>
+<tr>
+<td>country_id</td>
+<td>str</td>
+<td>国家或地区区号</td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>示例：</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl &#x27;http://passport.bilibili.com/web/generic/country/list&#x27;</span><br></pre></td></tr></table></figure>
+<details>
+<summary>查看响应示例：</summary>
+
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;code&quot;</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="attr">&quot;data&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;common&quot;</span>: [</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">&quot;id&quot;</span>: <span class="number">1</span>,</span><br><span class="line">                <span class="attr">&quot;cname&quot;</span>: <span class="string">&quot;中国大陆&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;country_id&quot;</span>: <span class="string">&quot;86&quot;</span></span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">&quot;id&quot;</span>: <span class="number">5</span>,</span><br><span class="line">                <span class="attr">&quot;cname&quot;</span>: <span class="string">&quot;中国香港特别行政区&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;country_id&quot;</span>: <span class="string">&quot;852&quot;</span></span><br><span class="line">            &#125;,</span><br><span class="line">            …………</span><br><span class="line">        ],</span><br><span class="line">        <span class="attr">&quot;others&quot;</span>: [</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">&quot;id&quot;</span>: <span class="number">22</span>,</span><br><span class="line">                <span class="attr">&quot;cname&quot;</span>: <span class="string">&quot;阿富汗&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;country_id&quot;</span>: <span class="string">&quot;93&quot;</span></span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">&quot;id&quot;</span>: <span class="number">20</span>,</span><br><span class="line">                <span class="attr">&quot;cname&quot;</span>: <span class="string">&quot;阿尔巴尼亚&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;country_id&quot;</span>: <span class="string">&quot;355&quot;</span></span><br><span class="line">            &#125;,</span><br><span class="line">            …………</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</details>
+
+<h2 id="发送短信验证码（web端）"><a href="#发送短信验证码（web端）" class="headerlink" title="发送短信验证码（web端）"></a>发送短信验证码（web端）</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="http://passport.bilibili.com/web/sms/general/v2/send">http://passport.bilibili.com/web/sms/general/v2/send</a></p>
+</blockquote>
+<p><em>请求方式：POST</em></p>
+<p>短信发送CD时间为60s</p>
+<p>短信验证码超时时间为5min</p>
+<p><strong>正文参数（ application/x-www-form-urlencoded ）：</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>类型</th>
+<th>内容</th>
+<th>必要性</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>tel</td>
+<td>num</td>
+<td>手机号码</td>
+<td>必要</td>
+<td></td>
+</tr>
+<tr>
+<td>cid</td>
+<td>num</td>
+<td>国际地区代码</td>
+<td>必要</td>
+<td></td>
+</tr>
+<tr>
+<td>type</td>
+<td>num</td>
+<td>21</td>
+<td>必要</td>
+<td>必须为<code>21</code></td>
+</tr>
+<tr>
+<td>captchaType</td>
+<td>num</td>
+<td>6</td>
+<td>必要</td>
+<td>必须为<code>6</code></td>
+</tr>
+<tr>
+<td>key</td>
+<td>str</td>
+<td>登录秘钥</td>
+<td>必要</td>
+<td>从B站API获取</td>
+</tr>
+<tr>
+<td>challenge</td>
+<td>str</td>
+<td>极验challenge</td>
+<td>必要</td>
+<td>从B站API获取</td>
+</tr>
+<tr>
+<td>validate</td>
+<td>str</td>
+<td>极验结果</td>
+<td>必要</td>
+<td>从极验获取</td>
+</tr>
+<tr>
+<td>seccode</td>
+<td>str</td>
+<td>极验结果+`</td>
+<td>jordan`</td>
+<td>必要</td>
+</tr>
+</tbody></table>
+<p><strong>json回复：</strong></p>
+<p>根对象：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>内容</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>code</td>
+<td>num</td>
+<td>返回值</td>
+<td>0：成功<br />-400：请求错误<br />1002：手机号格式错误<br />86203：短信发送次数已达上限<br />1003：验证码已经发送<br />1025：该手机号在哔哩哔哩有过永久封禁记录，无法再次注册或绑定新账号<br />2400：登录秘钥错误<br />2406：验证极验服务出错</td>
+</tr>
+<tr>
+<td>message</td>
+<td>str</td>
+<td>错误信息</td>
+<td>成功为”验证码短信已下发”</td>
+</tr>
+</tbody></table>
+<p><strong>示例：</strong></p>
+<p>例如手机号为<code>13888888888</code>，国际ID为<code>1（中国大陆）</code>，登录秘钥为<code>aabbccdd</code>，极验challenge为<code>2333</code>，极验结果为<code>666666</code>，进行发送短信验证码操作</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">curl &#x27;http://passport.bilibili.com/web/sms/general/v2/send&#x27; \</span><br><span class="line">--data-urlencode &#x27;tel=13888888888&#x27; \</span><br><span class="line">--data-urlencode &#x27;cid=1&#x27; \</span><br><span class="line">--data-urlencode &#x27;type=21&#x27; \</span><br><span class="line">--data-urlencode &#x27;captchaType=6&#x27; \</span><br><span class="line">--data-urlencode &#x27;key=aabbccdd&#x27; \</span><br><span class="line">--data-urlencode &#x27;challenge=2333&#x27; \</span><br><span class="line">--data-urlencode &#x27;validate=666666&#x27; \</span><br><span class="line">--data-urlencode &#x27;seccode=666666|jordan&#x27;</span><br></pre></td></tr></table></figure>
+<details>
+<summary>查看响应示例：</summary>
+
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;code&quot;</span>: <span class="number">0</span>,</span><br><span class="line">  <span class="attr">&quot;message&quot;</span>: <span class="string">&quot;验证码短信已下发&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</details>
+
+<h2 id="使用短信验证码登录（web端）"><a href="#使用短信验证码登录（web端）" class="headerlink" title="使用短信验证码登录（web端）"></a>使用短信验证码登录（web端）</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="http://passport.bilibili.com/web/login/rapid">http://passport.bilibili.com/web/login/rapid</a></p>
+</blockquote>
+<p><em>请求方式：POST</em></p>
+<p>验证登录成功后会进行设置以下cookie项：</p>
+<p> <code>DedeUserID</code> <code>DedeUserID__ckMd5</code> <code>SESSDATA</code> <code>bili_jct</code></p>
+<p><strong>正文参数（ application/x-www-form-urlencoded ）：</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>类型</th>
+<th>内容</th>
+<th>必要性</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>cid</td>
+<td>num</td>
+<td>国际地区代码</td>
+<td>必要</td>
+<td></td>
+</tr>
+<tr>
+<td>tel</td>
+<td>num</td>
+<td>手机号码</td>
+<td>必要</td>
+<td></td>
+</tr>
+<tr>
+<td>smsCode</td>
+<td>num</td>
+<td>短信验证码</td>
+<td>必要</td>
+<td>超时时间为5min</td>
+</tr>
+<tr>
+<td>goUrl</td>
+<td>str</td>
+<td>跳转url</td>
+<td>非必要</td>
+<td>默认为<a target="_blank" rel="noopener" href="https://www.bilibili.com/">https://www.bilibili.com</a></td>
+</tr>
+</tbody></table>
+<p><strong>json回复：</strong></p>
+<p>根对象：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>内容</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>code</td>
+<td>num</td>
+<td>返回值</td>
+<td>0：成功<br />-400：请求错误<br />1006：请输入正确的短信验证码<br />1007：短信验证码已过期</td>
+</tr>
+<tr>
+<td>message</td>
+<td>str</td>
+<td>错误信息</td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td>obj</td>
+<td>信息本体</td>
+<td></td>
+</tr>
+</tbody></table>
+<p><code>data</code>对象：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>内容</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>is_new</td>
+<td>bool</td>
+<td>false</td>
+<td>未知,估计是未注册时自动注册新用户</td>
+</tr>
+<tr>
+<td>status</td>
+<td>num</td>
+<td>0</td>
+<td>未知,可能0就是成功吧</td>
+</tr>
+<tr>
+<td>url</td>
+<td>str</td>
+<td>跳转url</td>
+<td>默认为<a target="_blank" rel="noopener" href="https://www.bilibili.com/">https://www.bilibili.com</a></td>
+</tr>
+</tbody></table>
+<p><strong>示例：</strong></p>
+<p>使用手机号<code>13888888888</code>，短信验证码为<code>123456</code>，进行验证登录操作</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">curl &#x27;https://passport.bilibili.com/web/login/rapid&#x27; </span><br><span class="line">--data-urlencode &#x27;cid=1&#x27; \</span><br><span class="line">--data-urlencode &#x27;tel=13888888888&#x27; \</span><br><span class="line">--data-urlencode &#x27;smsCode=123456&#x27;</span><br></pre></td></tr></table></figure>
+<details>
+<summary>查看响应示例：</summary>
+
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;code&quot;</span>: <span class="number">0</span>,</span><br><span class="line">  <span class="attr">&quot;data&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;is_new&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">&quot;status&quot;</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="attr">&quot;url&quot;</span>: <span class="string">&quot;https://space.bilibili.com&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</details>
+
+<p><strong>响应头部抓包信息：</strong></p>
+<p>可明显看见设置了几个cookie（填入浏览器即可成功登录）</p>
+<details>
+<summary>查看响应示例：</summary>
+
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">HTTP/1.1</span> <span class="number">200</span> OK</span><br><span class="line"><span class="attribute">Date</span><span class="punctuation">: </span>Mon, 13 Jul 2020 09:57:33 GMT</span><br><span class="line"><span class="attribute">Content-Type</span><span class="punctuation">: </span>application/json;charset=UTF-8</span><br><span class="line"><span class="attribute">Content-Length</span><span class="punctuation">: </span>78</span><br><span class="line"><span class="attribute">Connection</span><span class="punctuation">: </span>keep-alive</span><br><span class="line"><span class="attribute">Server</span><span class="punctuation">: </span>Apache-Coyote/1.1</span><br><span class="line"><span class="attribute">Set-Cookie</span><span class="punctuation">: </span>DedeUserID=***; Domain=.bilibili.com; Expires=Sat, 18-Jul-2020 09:57:57 GMT; Path=/</span><br><span class="line"><span class="attribute">Set-Cookie</span><span class="punctuation">: </span>DedeUserID__ckMd5=***; Domain=.bilibili.com; Expires=Sat, 18-Jul-2020 09:57:57 GMT; Path=/</span><br><span class="line"><span class="attribute">Set-Cookie</span><span class="punctuation">: </span>SESSDATA=***; Domain=.bilibili.com; Expires=Sat, 18-Jul-2020 09:57:57 GMT; Path=/; HttpOnly</span><br><span class="line"><span class="attribute">Set-Cookie</span><span class="punctuation">: </span>bili_jct=***; Domain=.bilibili.com; Expires=Sat, 18-Jul-2020 09:57:57 GMT; Path=/</span><br><span class="line"><span class="attribute">Expires</span><span class="punctuation">: </span>Mon, 13 Jul 2020 09:57:32 GMT</span><br><span class="line"><span class="attribute">Cache-Control</span><span class="punctuation">: </span>no-cache</span><br><span class="line"><span class="attribute">X-Cache-Webcdn</span><span class="punctuation">: </span>BYPASS from jd-sxhz-dx-w-01</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</details>
+
+                
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+<script src="/js/darkmode.js"></script>
+
+
+<script src="/js/live2d.js"></script>
+<script src="/js/waifu-tips.js"></script>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="waifu">
+  <div class="waifu-tips"></div>
+  <canvas id="live2d" class="live2d"></canvas>
+  <div class="waifu-tool">
+      <span class="fui-home"></span>
+      <span class="fui-chat"></span>
+      <span class="fui-eye"></span>
+      <span class="fui-user"></span>
+      <span class="fui-photo"></span>
+      <span class="fui-info-circle"></span>
+      <span class="fui-cross"></span>
+  </div>
+</div>
+<script type="text/javascript">
+  initModel("/live2d/waifu-tips.json")
+</script>
+
+
+
+
+
+</html>

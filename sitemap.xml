@@ -2,6 +2,237 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://wdsjimin.gitee.io/BiliApi-Collect-Mirror/video/videostream_url.html</loc>
+    
+    <lastmod>2021-02-28</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://wdsjimin.gitee.io/BiliApi-Collect-Mirror/video/video_zone.html</loc>
+    
+    <lastmod>2021-02-28</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://wdsjimin.gitee.io/BiliApi-Collect-Mirror/video/pbp.html</loc>
+    
+    <lastmod>2021-02-28</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://wdsjimin.gitee.io/BiliApi-Collect-Mirror/video/interact_video.html</loc>
+    
+    <lastmod>2021-02-28</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://wdsjimin.gitee.io/BiliApi-Collect-Mirror/video/info.html</loc>
+    
+    <lastmod>2021-02-28</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://wdsjimin.gitee.io/BiliApi-Collect-Mirror/video/snapshot.html</loc>
+    
+    <lastmod>2021-02-28</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://wdsjimin.gitee.io/BiliApi-Collect-Mirror/user/info.html</loc>
+    
+    <lastmod>2021-02-28</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://wdsjimin.gitee.io/BiliApi-Collect-Mirror/search/search_response.html</loc>
+    
+    <lastmod>2021-02-28</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://wdsjimin.gitee.io/BiliApi-Collect-Mirror/ranking&dynamic/ranking.html</loc>
+    
+    <lastmod>2021-02-28</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://wdsjimin.gitee.io/BiliApi-Collect-Mirror/other/picture.html</loc>
+    
+    <lastmod>2021-02-28</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://wdsjimin.gitee.io/BiliApi-Collect-Mirror/other/errcode.html</loc>
+    
+    <lastmod>2021-02-28</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://wdsjimin.gitee.io/BiliApi-Collect-Mirror/other/bvID.html</loc>
+    
+    <lastmod>2021-02-28</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://wdsjimin.gitee.io/BiliApi-Collect-Mirror/note/readme.html</loc>
+    
+    <lastmod>2021-02-28</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://wdsjimin.gitee.io/BiliApi-Collect-Mirror/note/list.html</loc>
+    
+    <lastmod>2021-02-28</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://wdsjimin.gitee.io/BiliApi-Collect-Mirror/mkdocs/mkdocs.json</loc>
+    
+    <lastmod>2021-02-28</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://wdsjimin.gitee.io/BiliApi-Collect-Mirror/login/login_action/password.html</loc>
+    
+    <lastmod>2021-02-28</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://wdsjimin.gitee.io/BiliApi-Collect-Mirror/login/login_action/QR.html</loc>
+    
+    <lastmod>2021-02-28</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://wdsjimin.gitee.io/BiliApi-Collect-Mirror/login/login_action/SMS.html</loc>
+    
+    <lastmod>2021-02-28</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://wdsjimin.gitee.io/BiliApi-Collect-Mirror/live/message_stream.html</loc>
+    
+    <lastmod>2021-02-28</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://wdsjimin.gitee.io/BiliApi-Collect-Mirror/login/login_action/readme.html</loc>
+    
+    <lastmod>2021-02-28</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://wdsjimin.gitee.io/BiliApi-Collect-Mirror/history&toview/toview.html</loc>
+    
+    <lastmod>2021-02-28</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://wdsjimin.gitee.io/BiliApi-Collect-Mirror/grpc_api/readme.html</loc>
+    
+    <lastmod>2021-02-28</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://wdsjimin.gitee.io/BiliApi-Collect-Mirror/history&toview/history.html</loc>
+    
+    <lastmod>2021-02-28</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://wdsjimin.gitee.io/BiliApi-Collect-Mirror/electric/Bcoin.html</loc>
+    
+    <lastmod>2021-02-28</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://wdsjimin.gitee.io/BiliApi-Collect-Mirror/dynamic/publish.html</loc>
+    
+    <lastmod>2021-02-28</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://wdsjimin.gitee.io/BiliApi-Collect-Mirror/electric/WeChat&Alipay.html</loc>
+    
+    <lastmod>2021-02-28</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://wdsjimin.gitee.io/BiliApi-Collect-Mirror/danmaku/danmaku_xml.html</loc>
+    
+    <lastmod>2021-02-28</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://wdsjimin.gitee.io/BiliApi-Collect-Mirror/danmaku/danmaku_proto.html</loc>
+    
+    <lastmod>2021-02-28</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://wdsjimin.gitee.io/BiliApi-Collect-Mirror/danmaku/danmaku_view_proto.html</loc>
+    
+    <lastmod>2021-02-28</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://wdsjimin.gitee.io/BiliApi-Collect-Mirror/comment/readme.html</loc>
+    
+    <lastmod>2021-02-28</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://wdsjimin.gitee.io/BiliApi-Collect-Mirror/broadcast/readme.html</loc>
+    
+    <lastmod>2021-02-28</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://wdsjimin.gitee.io/BiliApi-Collect-Mirror/audio/musicstream_url.html</loc>
+    
+    <lastmod>2021-02-28</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://wdsjimin.gitee.io/BiliApi-Collect-Mirror/index.html</loc>
+    
+    <lastmod>2021-02-28</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://wdsjimin.gitee.io/2021/01/28/htmlTest/</loc>
     
     <lastmod>2021-02-01</lastmod>
@@ -81,7 +312,7 @@
 
   <url>
     <loc>https://wdsjimin.gitee.io/</loc>
-    <lastmod>2021-02-01</lastmod>
+    <lastmod>2021-02-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -89,42 +320,42 @@
   
   <url>
     <loc>https://wdsjimin.gitee.io/tags/%E5%BB%BA%E7%AB%99/</loc>
-    <lastmod>2021-02-01</lastmod>
+    <lastmod>2021-02-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://wdsjimin.gitee.io/tags/Debian/</loc>
-    <lastmod>2021-02-01</lastmod>
+    <lastmod>2021-02-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://wdsjimin.gitee.io/tags/%E5%85%AC%E5%91%8A/</loc>
-    <lastmod>2021-02-01</lastmod>
+    <lastmod>2021-02-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://wdsjimin.gitee.io/tags/Python/</loc>
-    <lastmod>2021-02-01</lastmod>
+    <lastmod>2021-02-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://wdsjimin.gitee.io/tags/%E6%97%A5%E5%B8%B8/</loc>
-    <lastmod>2021-02-01</lastmod>
+    <lastmod>2021-02-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://wdsjimin.gitee.io/tags/Mysql/</loc>
-    <lastmod>2021-02-01</lastmod>
+    <lastmod>2021-02-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -133,35 +364,35 @@
   
   <url>
     <loc>https://wdsjimin.gitee.io/categories/%E5%BB%BA%E7%AB%99/</loc>
-    <lastmod>2021-02-01</lastmod>
+    <lastmod>2021-02-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://wdsjimin.gitee.io/categories/%E5%85%AC%E5%91%8A/</loc>
-    <lastmod>2021-02-01</lastmod>
+    <lastmod>2021-02-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://wdsjimin.gitee.io/categories/Python/</loc>
-    <lastmod>2021-02-01</lastmod>
+    <lastmod>2021-02-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://wdsjimin.gitee.io/categories/%E5%BB%BA%E7%AB%99/Mysql/</loc>
-    <lastmod>2021-02-01</lastmod>
+    <lastmod>2021-02-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://wdsjimin.gitee.io/categories/Python/%E6%97%A5%E5%B8%B8/</loc>
-    <lastmod>2021-02-01</lastmod>
+    <lastmod>2021-02-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>

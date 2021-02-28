@@ -1,0 +1,317 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="baidu-site-verification" content="code-MHmXGGvymI" />
+    <link rel="stylesheet" type="text/css" href="/css/waifu.css"/>
+    <title>IMin Lab</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="IMin,"> 
+    <meta name="description" content="IMin一个憨批的博客,"> 
+    <meta name="author" content="IMin"> 
+    <link rel="alternative" href="atom.xml" title="IMin Lab" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+<link rel="stylesheet" href="/css/bilibili_iconfont.css">
+
+    
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+    
+<link rel="stylesheet" href="/css/bilibili_iconfont.css">
+
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+    
+<link rel="stylesheet" href="/css/waifu.css">
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">IMin Lab</span>
+    <div id="loader"></div>
+    <div id="single" class="page">
+    <div id="top">
+        <a class="iconfont icon-left image-icon" href="javascript:history.back()"></a>
+    </div>
+    <div class="section">
+        <div class="article">
+            <div class="main">
+                <div class="content">
+                
+                        <h1 id="protobuf弹幕"><a href="#protobuf弹幕" class="headerlink" title="protobuf弹幕"></a>protobuf弹幕</h1><p>2020年5月23日，哔哩哔哩网页端及移动端启用了新的默认弹幕api，网页端弹幕显示的上限变为原弹幕池上限的两倍。</p>
+<p>新的api是以6分钟为一个单位加载，即每次加载6分钟内的弹幕</p>
+<ul>
+<li><a href="#%E8%8E%B7%E5%8F%96%E5%AE%9E%E6%97%B6%E5%BC%B9%E5%B9%95">获取实时弹幕</a></li>
+</ul>
+<hr>
+<h2 id="获取实时弹幕"><a href="#获取实时弹幕" class="headerlink" title="获取实时弹幕"></a>获取实时弹幕</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="http://api.bilibili.com/x/v2/dm/web/seg.so">http://api.bilibili.com/x/v2/dm/web/seg.so</a> （web端）</p>
+<p><a target="_blank" rel="noopener" href="http://api.bilibili.com/x/v2/dm/list/seg.so">http://api.bilibili.com/x/v2/dm/list/seg.so</a> （APP端）</p>
+<p><a target="_blank" rel="noopener" href="http://i0.hdslb.com/bfs/dm/%7Bdata%7D.bin">http://i0.hdslb.com/bfs/dm/{data}.bin</a> （BAS/代码弹幕专包）</p>
+</blockquote>
+<p><em>请求方式：GET</em></p>
+<p>此接口与漫画弹幕相同</p>
+<p>只能返回普通弹幕（<code>pool=1</code> <code>mode=1-7</code>）和代码弹幕（<code>pool=2</code> <code>mode=8</code>），BAS弹幕（<code>pool=2</code> <code>mode=9</code>）请从<a href="danmaku_view_proto.md">弹幕元数据</a>中获取</p>
+<p>互动弹幕（UP主头像弹幕、关联视频、内嵌关注按钮）也不存在这个接口，请从<a href="danmaku_view_proto.md">弹幕元数据</a>中获取</p>
+<p><strong>注：仅获取6min的整数倍时间内的弹幕，6min内最多弹幕数为6000条（如第一包中弹幕<code>progress</code>值域为0-360000）</strong></p>
+<p><strong>url参数：</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>类型</th>
+<th>内容</th>
+<th>必要性</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>type</td>
+<td>num</td>
+<td>弹幕类</td>
+<td>必要</td>
+<td>1：视频弹幕</td>
+</tr>
+<tr>
+<td>oid</td>
+<td>num</td>
+<td>视频CID</td>
+<td>必要</td>
+<td></td>
+</tr>
+<tr>
+<td>pid</td>
+<td>num</td>
+<td>稿件avID</td>
+<td>非必要</td>
+<td></td>
+</tr>
+<tr>
+<td>segment_index</td>
+<td>num</td>
+<td>分包</td>
+<td>必要</td>
+<td>6分钟一包</td>
+</tr>
+</tbody></table>
+<p><strong>proto回复：</strong></p>
+<p>porto定义见：<a href="../grpc_api/bilibili/community/service/dm/v1.proto">bilibili.community.service.dm.v1.DmSegMobileReply</a></p>
+<p>消息<code>DmSegMobileReply</code>：</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>含义</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>elems</td>
+<td>repeated DanmakuElem</td>
+<td>弹幕条目</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>消息<code>DanmakuElem</code>：</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>含义</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>id</td>
+<td>int64</td>
+<td>弹幕dmID</td>
+<td>唯一  可用于操作参数</td>
+</tr>
+<tr>
+<td>progress</td>
+<td>int32</td>
+<td>视频内弹幕出现时间</td>
+<td>毫秒</td>
+</tr>
+<tr>
+<td>mode</td>
+<td>int32</td>
+<td>弹幕类型</td>
+<td>1 2 3：普通弹幕<br />4：底部弹幕<br />5：顶部弹幕<br />6：逆向弹幕<br />7：高级弹幕<br />8：代码弹幕<br />9：BAS弹幕（仅限于特殊弹幕专包）</td>
+</tr>
+<tr>
+<td>fontsize</td>
+<td>int32</td>
+<td>弹幕字号</td>
+<td>18：小<br />25：标准<br />36：大</td>
+</tr>
+<tr>
+<td>color</td>
+<td>uint32</td>
+<td>弹幕颜色</td>
+<td>十进制RGB888值</td>
+</tr>
+<tr>
+<td>midHash</td>
+<td>string</td>
+<td>发送者UID的HASH</td>
+<td>用于屏蔽用户和查看用户发送的所有弹幕   也可反查用户ID</td>
+</tr>
+<tr>
+<td>content</td>
+<td>string</td>
+<td>弹幕内容</td>
+<td>utf-8编码</td>
+</tr>
+<tr>
+<td>ctime</td>
+<td>int64</td>
+<td>弹幕发送时间</td>
+<td>时间戳</td>
+</tr>
+<tr>
+<td>weight</td>
+<td>int32</td>
+<td>权重</td>
+<td>用于智能屏蔽，根据弹幕语义及长度通过AI识别得出<br />范围：[0-10]<br />值越大权重越高</td>
+</tr>
+<tr>
+<td>action</td>
+<td>string</td>
+<td>动作？</td>
+<td>作用尚不明确</td>
+</tr>
+<tr>
+<td>pool</td>
+<td>int32</td>
+<td>弹幕池</td>
+<td>0：普通池<br />1：字幕池<br />2：特殊池（代码/BAS弹幕）</td>
+</tr>
+<tr>
+<td>idStr</td>
+<td>string</td>
+<td>弹幕dmID</td>
+<td>字串形式<br />唯一  可用于操作参数</td>
+</tr>
+</tbody></table>
+<p><strong>示例：</strong></p>
+<p>获取视频<code>av810872(CID=1176840)</code>（炮姐）的实时弹幕分包1</p>
+<p><strong>注：proto定义需要编译</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> google.protobuf.text_format <span class="keyword">as</span> text_format</span><br><span class="line"><span class="keyword">import</span> bilibili.community.service.dm.v1_pb2 <span class="keyword">as</span> Danmaku</span><br><span class="line"></span><br><span class="line">url = <span class="string">&#x27;http://api.bilibili.com/x/v2/dm/web/seg.so&#x27;</span></span><br><span class="line">params = &#123;</span><br><span class="line">    <span class="string">&#x27;type&#x27;</span>:<span class="number">1</span>,         <span class="comment">#弹幕类型</span></span><br><span class="line">    <span class="string">&#x27;oid&#x27;</span>:<span class="number">1176840</span>,    <span class="comment">#cid</span></span><br><span class="line">    <span class="string">&#x27;pid&#x27;</span>:<span class="number">810872</span>,     <span class="comment">#avid</span></span><br><span class="line">    <span class="string">&#x27;segment_index&#x27;</span>:<span class="number">1</span> <span class="comment">#弹幕分段</span></span><br><span class="line">&#125;</span><br><span class="line">resp = requests.get(url,params)</span><br><span class="line">data = resp.content</span><br><span class="line"></span><br><span class="line">danmaku_seg = Danmaku.DmSegMobileReply()</span><br><span class="line">danmaku_seg.ParseFromString(data)</span><br><span class="line"></span><br><span class="line">print(text_format.MessageToString(danmaku_seg.elems[<span class="number">0</span>],as_utf8=<span class="literal">True</span>))</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">id: 711923911</span><br><span class="line">progress: 47880</span><br><span class="line">mode: 1</span><br><span class="line">fontsize: 18</span><br><span class="line">color: 10092288</span><br><span class="line">midHash: &quot;59417e95&quot;</span><br><span class="line">content: &quot;世界第一电击公主殿下,遇到你是我一生最美好的风景!吾炮赛高,永生不离!唯我超电磁炮永世长存! &quot;</span><br><span class="line">ctime: 1418799826</span><br><span class="line">weight: 6</span><br><span class="line">idStr: &quot;711923911&quot;</span><br><span class="line">attr: 1</span><br></pre></td></tr></table></figure>
+
+                
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+<script src="/js/darkmode.js"></script>
+
+
+<script src="/js/live2d.js"></script>
+<script src="/js/waifu-tips.js"></script>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="waifu">
+  <div class="waifu-tips"></div>
+  <canvas id="live2d" class="live2d"></canvas>
+  <div class="waifu-tool">
+      <span class="fui-home"></span>
+      <span class="fui-chat"></span>
+      <span class="fui-eye"></span>
+      <span class="fui-user"></span>
+      <span class="fui-photo"></span>
+      <span class="fui-info-circle"></span>
+      <span class="fui-cross"></span>
+  </div>
+</div>
+<script type="text/javascript">
+  initModel("/live2d/waifu-tips.json")
+</script>
+
+
+
+
+
+</html>

@@ -1,0 +1,407 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="baidu-site-verification" content="code-MHmXGGvymI" />
+    <link rel="stylesheet" type="text/css" href="/css/waifu.css"/>
+    <title>IMin Lab</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="IMin,"> 
+    <meta name="description" content="IMin一个憨批的博客,"> 
+    <meta name="author" content="IMin"> 
+    <link rel="alternative" href="atom.xml" title="IMin Lab" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+<link rel="stylesheet" href="/css/bilibili_iconfont.css">
+
+    
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+    
+<link rel="stylesheet" href="/css/bilibili_iconfont.css">
+
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+    
+<link rel="stylesheet" href="/css/waifu.css">
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">IMin Lab</span>
+    <div id="loader"></div>
+    <div id="single" class="page">
+    <div id="top">
+        <a class="iconfont icon-left image-icon" href="javascript:history.back()"></a>
+    </div>
+    <div class="section">
+        <div class="article">
+            <div class="main">
+                <div class="content">
+                
+                        <h1 id="笔记列表"><a href="#笔记列表" class="headerlink" title="笔记列表"></a>笔记列表</h1><ul>
+<li><a href="#%E6%9F%A5%E8%AF%A2%E7%AC%94%E8%AE%B0%E5%88%97%E8%A1%A8">查询所有笔记列表</a></li>
+</ul>
+<h2 id="查询所有笔记列表"><a href="#查询所有笔记列表" class="headerlink" title="查询所有笔记列表"></a>查询所有笔记列表</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="http://api.bilibili.com/x/note/list">http://api.bilibili.com/x/note/list</a></p>
+</blockquote>
+<p><em>请求方式：GET</em></p>
+<p>认证方式：Cookie（SESSDATA）</p>
+<p><strong>url参数：</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>类型</th>
+<th>内容</th>
+<th>必要性</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ps</td>
+<td>num</td>
+<td>每页项数</td>
+<td>必要</td>
+<td></td>
+</tr>
+<tr>
+<td>pn</td>
+<td>num</td>
+<td>页码</td>
+<td>必要</td>
+<td></td>
+</tr>
+<tr>
+<td>csrf</td>
+<td>str</td>
+<td>CSRF Token（位于cookie）</td>
+<td>非必要</td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>json回复：</strong></p>
+<p>根对象：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>内容</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>code</td>
+<td>num</td>
+<td>返回值</td>
+<td>0：成功<br />-400：请求错误<br />-101：账号未登录</td>
+</tr>
+<tr>
+<td>message</td>
+<td>str</td>
+<td>错误信息</td>
+<td>默认为0</td>
+</tr>
+<tr>
+<td>ttl</td>
+<td>num</td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td>obj</td>
+<td>信息本体</td>
+<td></td>
+</tr>
+</tbody></table>
+<p><code>data</code>对象：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>内容</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>list</td>
+<td>array</td>
+<td>明细列表</td>
+<td></td>
+</tr>
+<tr>
+<td>page</td>
+<td>obj</td>
+<td>页面信息</td>
+<td></td>
+</tr>
+</tbody></table>
+<p><code>data</code>中的<code>list</code>数组：</p>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>类型</th>
+<th>内容</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>obj</td>
+<td>笔记1</td>
+<td></td>
+</tr>
+<tr>
+<td>n</td>
+<td>obj</td>
+<td>笔记（n+1）</td>
+<td>按照创建顺序排列</td>
+</tr>
+<tr>
+<td>……</td>
+<td>obj</td>
+<td>……</td>
+<td>……</td>
+</tr>
+</tbody></table>
+<p><code>list</code>中的对象：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>内容</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>title</td>
+<td>str</td>
+<td>笔记标题</td>
+<td></td>
+</tr>
+<tr>
+<td>summary</td>
+<td>str</td>
+<td>笔记预览文本</td>
+<td></td>
+</tr>
+<tr>
+<td>mtime</td>
+<td>str</td>
+<td>提交时间</td>
+<td></td>
+</tr>
+<tr>
+<td>arc</td>
+<td>obj</td>
+<td>视频信息</td>
+<td></td>
+</tr>
+<tr>
+<td>note_id</td>
+<td>num</td>
+<td>笔记ID</td>
+<td></td>
+</tr>
+<tr>
+<td>audit_status</td>
+<td>num</td>
+<td>0</td>
+<td>作用尚不明确</td>
+</tr>
+</tbody></table>
+<p><code>list</code>中的<code>arc</code>中的对象：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>内容</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>aid</td>
+<td>num</td>
+<td>稿件avID</td>
+<td></td>
+</tr>
+<tr>
+<td>bvid</td>
+<td>str</td>
+<td>稿件bvID</td>
+<td></td>
+</tr>
+<tr>
+<td>pic</td>
+<td>str</td>
+<td>稿件封面图片url</td>
+<td></td>
+</tr>
+<tr>
+<td>desc</td>
+<td>str</td>
+<td>视频简介</td>
+<td></td>
+</tr>
+<tr>
+<td>status</td>
+<td>num</td>
+<td>0</td>
+<td></td>
+</tr>
+</tbody></table>
+<p><code>data</code>中的<code>page</code>对象：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>内容</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>total</td>
+<td>num</td>
+<td>笔记总数</td>
+<td></td>
+</tr>
+<tr>
+<td>size</td>
+<td>num</td>
+<td>每页项数</td>
+<td></td>
+</tr>
+<tr>
+<td>num</td>
+<td>num</td>
+<td>页码</td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>示例：</strong></p>
+<p>获取笔记列表</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">curl &#x27;http://api.bilibili.com/x/note/list&#x27; \</span><br><span class="line">--data-urlencode &#x27;ps=10&#x27; \</span><br><span class="line">--data-urlencode &#x27;pn=1&#x27;</span><br><span class="line">-b &#x27;SESSDATA=xxx&#x27;</span><br></pre></td></tr></table></figure>
+<details>
+<summary>查看响应示例：</summary>
+
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;code&quot;</span>:<span class="number">0</span>,</span><br><span class="line">    <span class="attr">&quot;message&quot;</span>:<span class="string">&quot;0&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;ttl&quot;</span>:<span class="number">1</span>,</span><br><span class="line">    <span class="attr">&quot;data&quot;</span>:&#123;</span><br><span class="line">        <span class="attr">&quot;list&quot;</span>:[</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">&quot;title&quot;</span>:<span class="string">&quot;周刊哔哩哔哩排行榜#543&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;summary&quot;</span>:<span class="string">&quot;test&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;mtime&quot;</span>:<span class="string">&quot;2020-11-23 17:45&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;arc&quot;</span>:&#123;</span><br><span class="line">                    <span class="attr">&quot;aid&quot;</span>:<span class="number">970322090</span>,</span><br><span class="line">                    <span class="attr">&quot;bvid&quot;</span>:<span class="string">&quot;BV1op4y167Uo&quot;</span>,</span><br><span class="line">                    <span class="attr">&quot;pic&quot;</span>:<span class="string">&quot;http://i1.hdslb.com/bfs/archive/cc67f9c9b70d6eb97f00e726517c8c3da540ee05.jpg&quot;</span>,</span><br><span class="line">                    <span class="attr">&quot;desc&quot;</span>:<span class="string">&quot;20年11月第3周 | 【PICK UP】栏目欢迎继续推荐，私信@周刊娘 ，附上推荐投稿的av/bv号与理由。请勿刷屏、引战&quot;</span>,</span><br><span class="line">                    <span class="attr">&quot;status&quot;</span>:<span class="number">0</span></span><br><span class="line">                &#125;,</span><br><span class="line">                <span class="attr">&quot;note_id&quot;</span>:<span class="number">3809605586518023</span>,</span><br><span class="line">                <span class="attr">&quot;audit_status&quot;</span>:<span class="number">0</span></span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">&quot;title&quot;</span>:<span class="string">&quot;【MV】保加利亚妖王AZIS视频合辑&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;summary&quot;</span>:<span class="string">&quot;test2&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;mtime&quot;</span>:<span class="string">&quot;2020-11-20 16:44&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;arc&quot;</span>:&#123;</span><br><span class="line">                    <span class="attr">&quot;aid&quot;</span>:<span class="number">170001</span>,</span><br><span class="line">                    <span class="attr">&quot;bvid&quot;</span>:<span class="string">&quot;BV17x411w7KC&quot;</span>,</span><br><span class="line">                    <span class="attr">&quot;pic&quot;</span>:<span class="string">&quot;http://i2.hdslb.com/bfs/archive/1ada8c32a9d168e4b2ee3e010f24789ba3353785.jpg&quot;</span>,</span><br><span class="line">                    <span class="attr">&quot;desc&quot;</span>:<span class="string">&quot;sina 保加利亚超级天王 Azis1999年出道。他的音乐融合保加利亚名族曲风chalga和pop、rap等元素，不过他惊艳的易装秀与浮夸的角色诠释才是他最为出名的地方 Azis与众多保加利亚天王天后级歌手都有过合作.06年，他作为Mariana Popova的伴唱，在欧洲半决赛上演唱了他们的参赛曲Let Me Cry 06年他被Velikite Balgari评为保加利亚有史以来最伟大的名人之一&quot;</span>,</span><br><span class="line">                    <span class="attr">&quot;status&quot;</span>:<span class="number">0</span></span><br><span class="line">                &#125;,</span><br><span class="line">                <span class="attr">&quot;note_id&quot;</span>:<span class="number">3988570796195843</span>,</span><br><span class="line">                <span class="attr">&quot;audit_status&quot;</span>:<span class="number">0</span></span><br><span class="line">            &#125;</span><br><span class="line">        ],</span><br><span class="line">        <span class="attr">&quot;page&quot;</span>:&#123;</span><br><span class="line">            <span class="attr">&quot;total&quot;</span>:<span class="number">2</span>,</span><br><span class="line">            <span class="attr">&quot;size&quot;</span>:<span class="number">10</span>,</span><br><span class="line">            <span class="attr">&quot;num&quot;</span>:<span class="number">1</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</details>
+
+                
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+<script src="/js/darkmode.js"></script>
+
+
+<script src="/js/live2d.js"></script>
+<script src="/js/waifu-tips.js"></script>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="waifu">
+  <div class="waifu-tips"></div>
+  <canvas id="live2d" class="live2d"></canvas>
+  <div class="waifu-tool">
+      <span class="fui-home"></span>
+      <span class="fui-chat"></span>
+      <span class="fui-eye"></span>
+      <span class="fui-user"></span>
+      <span class="fui-photo"></span>
+      <span class="fui-info-circle"></span>
+      <span class="fui-cross"></span>
+  </div>
+</div>
+<script type="text/javascript">
+  initModel("/live2d/waifu-tips.json")
+</script>
+
+
+
+
+
+</html>

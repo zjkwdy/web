@@ -1,0 +1,324 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="baidu-site-verification" content="code-MHmXGGvymI" />
+    <link rel="stylesheet" type="text/css" href="/css/waifu.css"/>
+    <title>IMin Lab</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="IMin,"> 
+    <meta name="description" content="IMin一个憨批的博客,"> 
+    <meta name="author" content="IMin"> 
+    <link rel="alternative" href="atom.xml" title="IMin Lab" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+<link rel="stylesheet" href="/css/bilibili_iconfont.css">
+
+    
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+    
+<link rel="stylesheet" href="/css/bilibili_iconfont.css">
+
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+    
+<link rel="stylesheet" href="/css/waifu.css">
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">IMin Lab</span>
+    <div id="loader"></div>
+    <div id="single" class="page">
+    <div id="top">
+        <a class="iconfont icon-left image-icon" href="javascript:history.back()"></a>
+    </div>
+    <div class="section">
+        <div class="article">
+            <div class="main">
+                <div class="content">
+                
+                        <h1 id="直播间信息流"><a href="#直播间信息流" class="headerlink" title="直播间信息流"></a>直播间信息流</h1><h2 id="数据包格式"><a href="#数据包格式" class="headerlink" title="数据包格式"></a>数据包格式</h2><p>数据包为websocket，格式为头部数据+正文数据</p>
+<p>操作流程：</p>
+<p>发送认证包-&gt;接收认证包回应-&gt;接收普通包&amp;（每30秒发送心跳包-&gt;接收心跳回应）</p>
+<p>头部格式：</p>
+<table>
+<thead>
+<tr>
+<th>偏移量</th>
+<th>长度</th>
+<th>类型</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>4</td>
+<td>uint32</td>
+<td>封包总大小（头部大小+正文大小）</td>
+</tr>
+<tr>
+<td>4</td>
+<td>2</td>
+<td>uint16</td>
+<td>头部大小（一般为0x0010，16字节）</td>
+</tr>
+<tr>
+<td>6</td>
+<td>2</td>
+<td>uint16</td>
+<td>协议版本:<br />0普通包正文不使用压缩 <br />1心跳及认证包正文不使用压缩<br />2普通包正文使用zlib压缩</td>
+</tr>
+<tr>
+<td>8</td>
+<td>4</td>
+<td>uint32</td>
+<td>操作码（封包类型）</td>
+</tr>
+<tr>
+<td>12</td>
+<td>4</td>
+<td>uint32</td>
+<td>sequence，可以取常数1</td>
+</tr>
+</tbody></table>
+<p>操作码：</p>
+<table>
+<thead>
+<tr>
+<th>代码</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2</td>
+<td>心跳包</td>
+</tr>
+<tr>
+<td>3</td>
+<td>心跳包回复（人气值）</td>
+</tr>
+<tr>
+<td>5</td>
+<td>普通包（命令）</td>
+</tr>
+<tr>
+<td>7</td>
+<td>认证包</td>
+</tr>
+<tr>
+<td>8</td>
+<td>认证包回复</td>
+</tr>
+</tbody></table>
+<h3 id="认证包"><a href="#认证包" class="headerlink" title="认证包"></a>认证包</h3><p>方式：（上行）</p>
+<p>连接成功后5秒内发送，否则强制断开连接</p>
+<p>正文：</p>
+<p>json格式</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>内容</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>uid</td>
+<td>num</td>
+<td>用户UID</td>
+<td>不可为0</td>
+</tr>
+<tr>
+<td>roomid</td>
+<td>num</td>
+<td>加入房间的ID</td>
+<td></td>
+</tr>
+<tr>
+<td>protover</td>
+<td>num</td>
+<td>协议版本</td>
+<td>现在是2</td>
+</tr>
+<tr>
+<td>platform</td>
+<td>str</td>
+<td>平台标识</td>
+<td>可为”web”</td>
+</tr>
+<tr>
+<td>clientver</td>
+<td>str</td>
+<td>客户端版本</td>
+<td>现在是”1.10.3”</td>
+</tr>
+<tr>
+<td>type</td>
+<td>num</td>
+<td>必须为2</td>
+<td></td>
+</tr>
+<tr>
+<td>key</td>
+<td>str</td>
+<td>认证秘钥</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">00000000  00 00 00 f0 00 10 00 01  00 00 00 07 00 00 00 01  |................|</span><br><span class="line">00000010  7b 22 75 69 64 22 3a 32  39 33 37 39 33 34 33 35  |&#123;&quot;uid&quot;:293793435|</span><br><span class="line">00000020  2c 22 72 6f 6f 6d 69 64  22 3a 32 31 36 38 36 32  |,&quot;roomid&quot;:216862|</span><br><span class="line">00000030  33 37 2c 22 70 72 6f 74  6f 76 65 72 22 3a 32 2c  |37,&quot;protover&quot;:2,|</span><br><span class="line">00000040  22 70 6c 61 74 66 6f 72  6d 22 3a 22 77 65 62 22  |&quot;platform&quot;:&quot;web&quot;|</span><br><span class="line">00000050  2c 22 63 6c 69 65 6e 74  76 65 72 22 3a 22 31 2e  |,&quot;clientver&quot;:&quot;1.|</span><br><span class="line">00000060  31 30 2e 33 22 2c 22 74  79 70 65 22 3a 32 2c 22  |10.3&quot;,&quot;type&quot;:2,&quot;|</span><br><span class="line">00000070  6b 65 79 22 3a 22 43 6f  4b 68 5f 61 49 46 42 6c  |key&quot;:&quot;CoKh_aIFBl|</span><br><span class="line">00000080  51 32 4c 57 77 64 79 4e  43 6b 2d 69 5f 42 76 72  |Q2LWwdyNCk-i_Bvr|</span><br><span class="line">00000090  64 72 72 55 4d 32 78 57  6c 74 62 35 77 6b 54 50  |drrUM2xWltb5wkTP|</span><br><span class="line">000000a0  4e 72 44 55 49 2d 73 46  32 41 56 56 4f 44 78 43  |NrDUI-sF2AVVODxC|</span><br><span class="line">000000b0  52 42 39 69 64 76 74 34  46 32 4d 50 31 45 4a 6c  |RB9idvt4F2MP1EJl|</span><br><span class="line">000000c0  4d 68 49 57 6b 31 5a 69  73 67 6e 32 67 67 66 6c  |MhIWk1Zisgn2ggfl|</span><br><span class="line">000000d0  68 72 65 6e 4f 4b 65 39  7a 56 65 6d 78 35 7a 5f  |hrenOKe9zVemx5z_|</span><br><span class="line">000000e0  5a 4d 43 61 55 77 4c 31  65 70 6d 7a 5a 53 22 7d  |ZMCaUwL1epmzZS&quot;&#125;|</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="认证包回复"><a href="#认证包回复" class="headerlink" title="认证包回复"></a>认证包回复</h3><p>方式：（下行）</p>
+<p>在认证包发送成功后就会收到</p>
+<p>json格式</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>内容</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>code</td>
+<td>num</td>
+<td>返回值</td>
+<td>0认证成功</td>
+</tr>
+</tbody></table>
+<p>示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">00000000  00 00 00 1a 00 10 00 01  00 00 00 08 00 00 00 01  |................|</span><br><span class="line">00000010  7b 22 63 6f 64 65 22 3a  30 7d                    |&#123;&quot;code&quot;:0&#125;|</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="心跳包"><a href="#心跳包" class="headerlink" title="心跳包"></a>心跳包</h3><p>方式：（上行）</p>
+<p>30秒左右发送一次，否则60秒后会被强制断开连接</p>
+<p>正文：</p>
+<p>特定字符</p>
+<p>[object Object]</p>
+<p>示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">00000000  00 00 00 1f 00 10 00 01  00 00 00 02 00 00 00 01  |................|</span><br><span class="line">00000010  5b 6f 62 6a 65 63 74 20  4f 62 6a 65 63 74 5d     |[object Object]|</span><br></pre></td></tr></table></figure>
+<h3 id="心跳回应（人气值）"><a href="#心跳回应（人气值）" class="headerlink" title="心跳回应（人气值）"></a>心跳回应（人气值）</h3><p>方式：（下行）</p>
+<p>在心跳包发送成功后就会收到</p>
+<p>正文：</p>
+<p>uint32整数，代表房间当前的人气值</p>
+<p>示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">00000000  00 00 00 14 00 10 00 01  00 00 00 03 00 00 00 01  |................|</span><br><span class="line">00000010  00 00 14 83                                       |....|</span><br></pre></td></tr></table></figure>
+<p>可见房间内人气值为5251人</p>
+<h3 id="普通包"><a href="#普通包" class="headerlink" title="普通包"></a>普通包</h3><p>方式：（下行）</p>
+<h4 id="弹幕"><a href="#弹幕" class="headerlink" title="弹幕"></a>弹幕</h4><h4 id="送礼"><a href="#送礼" class="headerlink" title="送礼"></a>送礼</h4><h4 id="欢迎加入房间"><a href="#欢迎加入房间" class="headerlink" title="欢迎加入房间"></a>欢迎加入房间</h4><h4 id="欢迎房管加入房间"><a href="#欢迎房管加入房间" class="headerlink" title="欢迎房管加入房间"></a>欢迎房管加入房间</h4><h4 id="系统消息"><a href="#系统消息" class="headerlink" title="系统消息"></a>系统消息</h4><h4 id="主播准备中"><a href="#主播准备中" class="headerlink" title="主播准备中"></a>主播准备中</h4><h4 id="直播开始"><a href="#直播开始" class="headerlink" title="直播开始"></a>直播开始</h4><h4 id="直播状态更新"><a href="#直播状态更新" class="headerlink" title="直播状态更新"></a>直播状态更新</h4>
+                
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+<script src="/js/darkmode.js"></script>
+
+
+<script src="/js/live2d.js"></script>
+<script src="/js/waifu-tips.js"></script>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="waifu">
+  <div class="waifu-tips"></div>
+  <canvas id="live2d" class="live2d"></canvas>
+  <div class="waifu-tool">
+      <span class="fui-home"></span>
+      <span class="fui-chat"></span>
+      <span class="fui-eye"></span>
+      <span class="fui-user"></span>
+      <span class="fui-photo"></span>
+      <span class="fui-info-circle"></span>
+      <span class="fui-cross"></span>
+  </div>
+</div>
+<script type="text/javascript">
+  initModel("/live2d/waifu-tips.json")
+</script>
+
+
+
+
+
+</html>

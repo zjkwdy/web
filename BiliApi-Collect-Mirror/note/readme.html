@@ -1,0 +1,382 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="baidu-site-verification" content="code-MHmXGGvymI" />
+    <link rel="stylesheet" type="text/css" href="/css/waifu.css"/>
+    <title>IMin Lab</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="IMin,"> 
+    <meta name="description" content="IMin一个憨批的博客,"> 
+    <meta name="author" content="IMin"> 
+    <link rel="alternative" href="atom.xml" title="IMin Lab" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+<link rel="stylesheet" href="/css/bilibili_iconfont.css">
+
+    
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+    
+<link rel="stylesheet" href="/css/bilibili_iconfont.css">
+
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+    
+<link rel="stylesheet" href="/css/waifu.css">
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">IMin Lab</span>
+    <div id="loader"></div>
+    <div id="single" class="page">
+    <div id="top">
+        <a class="iconfont icon-left image-icon" href="javascript:history.back()"></a>
+    </div>
+    <div class="section">
+        <div class="article">
+            <div class="main">
+                <div class="content">
+                
+                        <h1 id="视频笔记"><a href="#视频笔记" class="headerlink" title="视频笔记"></a>视频笔记</h1><p>2020-11-16 B站推出了测试版的功能——“视频笔记”，与视频稿件关联，为富文本模式，可供记录观看视频时的感悟以及视频中的重要内容，目前只可在web端操作</p>
+<p>目前单个稿件只能添加一篇笔记（与分P无关）</p>
+<hr>
+<p><strong>继续查看：</strong></p>
+<ul>
+<li><a href="list.md">笔记列表</a></li>
+<li><a href="info.md">笔记详细信息</a></li>
+<li><a href="action.md">笔记操作</a></li>
+</ul>
+<hr>
+<h2 id="附表-笔记正文序列格式"><a href="#附表-笔记正文序列格式" class="headerlink" title="附表-笔记正文序列格式"></a>附表-笔记正文序列格式</h2><p>根数组：</p>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>类型</th>
+<th>内容</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>obj</td>
+<td>第1个元素</td>
+<td></td>
+</tr>
+<tr>
+<td>n</td>
+<td>obj</td>
+<td>第(n+1)个元素</td>
+<td></td>
+</tr>
+<tr>
+<td>……</td>
+<td>obj</td>
+<td>……</td>
+<td>……</td>
+</tr>
+</tbody></table>
+<p>根数组中的对象：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>内容</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>attributes</td>
+<td>obj</td>
+<td>元素属性</td>
+<td>无属性无此项</td>
+</tr>
+<tr>
+<td>insert</td>
+<td>str</td>
+<td>元素内容</td>
+<td>为跳转/图片时无此项</td>
+</tr>
+<tr>
+<td>insert</td>
+<td>obj</td>
+<td>元素跳转信息</td>
+<td>非跳转/图片时无此项</td>
+</tr>
+</tbody></table>
+<p>对象中的<code>attributes</code>对象：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>内容</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>bold</td>
+<td>bool</td>
+<td>是否加粗</td>
+<td></td>
+</tr>
+<tr>
+<td>strike</td>
+<td>bool</td>
+<td>是否删除线</td>
+<td></td>
+</tr>
+<tr>
+<td>underline</td>
+<td>bool</td>
+<td>是否下划线</td>
+<td></td>
+</tr>
+<tr>
+<td>background</td>
+<td>str</td>
+<td>背景颜色</td>
+<td></td>
+</tr>
+<tr>
+<td>color</td>
+<td>str</td>
+<td>文字颜色</td>
+<td></td>
+</tr>
+<tr>
+<td>list</td>
+<td>str</td>
+<td>列表属性</td>
+<td>ordered有序列表/bullet无序列表</td>
+</tr>
+<tr>
+<td>size</td>
+<td>str</td>
+<td>文字字号</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>对象中的<code>insert</code>对象：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>内容</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>tag</td>
+<td>obj</td>
+<td>跳转标签</td>
+<td>二选一</td>
+</tr>
+<tr>
+<td>imageUpload</td>
+<td>obj</td>
+<td>笔记图片</td>
+<td>二选一</td>
+</tr>
+</tbody></table>
+<p><code>insert</code>中的<code>tag</code>对象：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>内容</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>cid</td>
+<td>num</td>
+<td>视频cid</td>
+<td></td>
+</tr>
+<tr>
+<td>status</td>
+<td>num</td>
+<td>0</td>
+<td>作用尚不明确</td>
+</tr>
+<tr>
+<td>index</td>
+<td>num</td>
+<td>在稿件中的分P索引</td>
+<td></td>
+</tr>
+<tr>
+<td>seconds</td>
+<td>num</td>
+<td>视频进度</td>
+<td></td>
+</tr>
+<tr>
+<td>cidCount</td>
+<td>num</td>
+<td>稿件总分P数</td>
+<td></td>
+</tr>
+<tr>
+<td>key</td>
+<td>str</td>
+<td>标签创建时间戳</td>
+<td></td>
+</tr>
+<tr>
+<td>title</td>
+<td>str</td>
+<td>output</td>
+<td>作用尚不明确</td>
+</tr>
+</tbody></table>
+<p><code>insert</code>中的<code>imageUpload</code>对象：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>内容</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>url</td>
+<td>str</td>
+<td>图片链接</td>
+<td></td>
+</tr>
+<tr>
+<td>status</td>
+<td>str</td>
+<td>done</td>
+<td>作用尚不明确</td>
+</tr>
+<tr>
+<td>width</td>
+<td>num</td>
+<td>图片宽度-2</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>示例：</p>
+<p>以下笔记正文序列包含<code>字号</code>、<code>加粗</code>、<code>高亮</code>、<code>普通文本</code>格式</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">&quot;attributes&quot;</span>: &#123;</span><br><span class="line">            <span class="attr">&quot;size&quot;</span>: <span class="string">&quot;24px&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;bold&quot;</span>: <span class="literal">true</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">&quot;insert&quot;</span>: <span class="string">&quot;关掉&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">&quot;attributes&quot;</span>: &#123;</span><br><span class="line">            <span class="attr">&quot;size&quot;</span>: <span class="string">&quot;24px&quot;</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">&quot;insert&quot;</span>: <span class="string">&quot;，&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">&quot;attributes&quot;</span>: &#123;</span><br><span class="line">            <span class="attr">&quot;size&quot;</span>: <span class="string">&quot;24px&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;bold&quot;</span>: <span class="literal">true</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">&quot;insert&quot;</span>: <span class="string">&quot;关掉&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">&quot;insert&quot;</span>: <span class="string">&quot;，&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">&quot;attributes&quot;</span>: &#123;</span><br><span class="line">            <span class="attr">&quot;background&quot;</span>: <span class="string">&quot;#fff359&quot;</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">&quot;insert&quot;</span>: <span class="string">&quot;一定要&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">&quot;attributes&quot;</span>: &#123;</span><br><span class="line">            <span class="attr">&quot;background&quot;</span>: <span class="string">&quot;#fff359&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;bold&quot;</span>: <span class="literal">true</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">&quot;insert&quot;</span>: <span class="string">&quot;关掉&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">&quot;insert&quot;</span>: <span class="string">&quot;\n再不关掉那些&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">&quot;attributes&quot;</span>: &#123;</span><br><span class="line">            <span class="attr">&quot;bold&quot;</span>: <span class="literal">true</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">&quot;insert&quot;</span>: <span class="string">&quot;网络游戏&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">&quot;insert&quot;</span>: <span class="string">&quot;，小孩哪有&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">&quot;attributes&quot;</span>: &#123;</span><br><span class="line">            <span class="attr">&quot;bold&quot;</span>: <span class="literal">true</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">&quot;insert&quot;</span>: <span class="string">&quot;美好的未来&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">&quot;insert&quot;</span>: <span class="string">&quot;，哪有&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">&quot;attributes&quot;</span>: &#123;</span><br><span class="line">            <span class="attr">&quot;bold&quot;</span>: <span class="literal">true</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">&quot;insert&quot;</span>: <span class="string">&quot;美好的前程&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">&quot;insert&quot;</span>: <span class="string">&quot;，祖国哪有&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">&quot;attributes&quot;</span>: &#123;</span><br><span class="line">            <span class="attr">&quot;bold&quot;</span>: <span class="literal">true</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">&quot;insert&quot;</span>: <span class="string">&quot;栋梁之才&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">&quot;insert&quot;</span>: <span class="string">&quot;\n&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+                
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+<script src="/js/darkmode.js"></script>
+
+
+<script src="/js/live2d.js"></script>
+<script src="/js/waifu-tips.js"></script>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="waifu">
+  <div class="waifu-tips"></div>
+  <canvas id="live2d" class="live2d"></canvas>
+  <div class="waifu-tool">
+      <span class="fui-home"></span>
+      <span class="fui-chat"></span>
+      <span class="fui-eye"></span>
+      <span class="fui-user"></span>
+      <span class="fui-photo"></span>
+      <span class="fui-info-circle"></span>
+      <span class="fui-cross"></span>
+  </div>
+</div>
+<script type="text/javascript">
+  initModel("/live2d/waifu-tips.json")
+</script>
+
+
+
+
+
+</html>

@@ -1,0 +1,196 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="baidu-site-verification" content="code-MHmXGGvymI" />
+    <link rel="stylesheet" type="text/css" href="/css/waifu.css"/>
+    <title>IMin Lab</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="IMin,"> 
+    <meta name="description" content="IMin一个憨批的博客,"> 
+    <meta name="author" content="IMin"> 
+    <link rel="alternative" href="atom.xml" title="IMin Lab" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+<link rel="stylesheet" href="/css/bilibili_iconfont.css">
+
+    
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+    
+<link rel="stylesheet" href="/css/bilibili_iconfont.css">
+
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+    
+<link rel="stylesheet" href="/css/waifu.css">
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">IMin Lab</span>
+    <div id="loader"></div>
+    <div id="single" class="page">
+    <div id="top">
+        <a class="iconfont icon-left image-icon" href="javascript:history.back()"></a>
+    </div>
+    <div class="section">
+        <div class="article">
+            <div class="main">
+                <div class="content">
+                
+                        <h1 id="bvID说明"><a href="#bvID说明" class="headerlink" title="bvID说明"></a>bvID说明</h1><p>2020-03-23 B站推出了全新的稿件视频ID“bvID”来接替之前的“avID”，其用法与性质等价于“avID”</p>
+<p>详见：</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv5167957">【升级公告】AV号全面升级至BV号（专栏）</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/blackboard/activity-BV-PC.html">【升级公告】AV号全面升级至BV号</a></li>
+</ol>
+<h2 id="格式："><a href="#格式：" class="headerlink" title="格式："></a>格式：</h2><p>“bvID”恒为长度为12的字符串，前两个字母为大写“BV”，后10个位base58计算结果</p>
+<h2 id="实质："><a href="#实质：" class="headerlink" title="实质："></a>实质：</h2><p>“bvID”为“avID”的base58编码，可通过算法进行相互转化</p>
+<h2 id="avID发放方式的变化："><a href="#avID发放方式的变化：" class="headerlink" title="avID发放方式的变化："></a>avID发放方式的变化：</h2><p>从2009-09-09 09:09:09 <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/av2">av2</a>的发布到2020-03-28  19:45:02 <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/av99999999">av99999999</a>的发布B站结束了以投稿时间为顺序的avID发放，改为随机发放avID</p>
+<p><del>暗示B站东方要完？泪目</del></p>
+<h2 id="av-gt-bv算法："><a href="#av-gt-bv算法：" class="headerlink" title="av-&gt;bv算法："></a>av-&gt;bv算法：</h2><p>注：本算法及示例程序仅能编码及解码avID&lt;<code>29460791296 </code>，无法验证avID&gt;=<code>29460791296 </code>的正确性</p>
+<ol>
+<li>a=(avID⊕177451812)+8728348608</li>
+<li>以i为循环变量循环6次b[i]=(a/58^i)%58</li>
+<li>将b[i]中各个数字转换为以下码表中的字符</li>
+</ol>
+<p>码表：</p>
+<blockquote>
+<p>fZodR9XQDSUm21yCkr6zBqiveYah8bt4xsWpHnJE7jL5VG3guMTKNPAwcF</p>
+</blockquote>
+<ol start="4">
+<li><p>初始化字符串b[i]=<code>BV1 4 1 7 </code></p>
+</li>
+<li><p>按照以下字符顺序编码表编码并填充至b[i]</p>
+</li>
+</ol>
+<p>字符顺序编码表：</p>
+<blockquote>
+<p>0 -&gt; 11</p>
+<p>1 -&gt; 10</p>
+<p>2 -&gt; 3</p>
+<p>3 -&gt; 8</p>
+<p>4 -&gt; 4</p>
+<p>5 -&gt; 6</p>
+</blockquote>
+<p>算法以及程序主要参考<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/381784377/answer/1099438784">知乎@mcfx的回答</a></p>
+<h2 id="bv-gt-av算法："><a href="#bv-gt-av算法：" class="headerlink" title="bv-&gt;av算法："></a>bv-&gt;av算法：</h2><p>为以上算法的逆运算</p>
+<h2 id="转换程序："><a href="#转换程序：" class="headerlink" title="转换程序："></a>转换程序：</h2><p>目前使用<strong>Python</strong>与<strong>C</strong>作为示例</p>
+<h3 id="python"><a href="#python" class="headerlink" title="python"></a>python</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">table = <span class="string">&#x27;fZodR9XQDSUm21yCkr6zBqiveYah8bt4xsWpHnJE7jL5VG3guMTKNPAwcF&#x27;</span> <span class="comment">#码表</span></span><br><span class="line">tr = &#123;&#125; <span class="comment">#反查码表</span></span><br><span class="line"><span class="comment">#初始化反查码表</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">58</span>):</span><br><span class="line">    tr[table[i]] = i</span><br><span class="line">s = [<span class="number">11</span>, <span class="number">10</span>, <span class="number">3</span>, <span class="number">8</span>, <span class="number">4</span>, <span class="number">6</span>] <span class="comment">#位置编码表</span></span><br><span class="line">xor = <span class="number">177451812</span> <span class="comment">#固定异或值</span></span><br><span class="line">add = <span class="number">8728348608</span> <span class="comment">#固定加法值</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bv2av</span>(<span class="params">x</span>):</span></span><br><span class="line">    r = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">6</span>):</span><br><span class="line">        r += tr[x[s[i]]] * <span class="number">58</span> ** i</span><br><span class="line">    <span class="keyword">return</span> (r - add) ^ xor</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">av2bv</span>(<span class="params">x</span>):</span></span><br><span class="line">    x = (x ^ xor) + add</span><br><span class="line">    r = <span class="built_in">list</span>(<span class="string">&#x27;BV1  4 1 7  &#x27;</span>)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">6</span>):</span><br><span class="line">        r[s[i]] = table[x // <span class="number">58</span> ** i % <span class="number">58</span>]</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span>. join(r)</span><br><span class="line"></span><br><span class="line">print(av2bv(<span class="number">170001</span>))</span><br><span class="line">print(bv2av(<span class="string">&#x27;BV17x411w7KC&#x27;</span>))</span><br></pre></td></tr></table></figure>
+<p>输出为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">BV17x411w7KC</span><br><span class="line">170001</span><br></pre></td></tr></table></figure>
+<h3 id="C语言"><a href="#C语言" class="headerlink" title="C语言"></a>C语言</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;math.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> table[] = <span class="string">&quot;fZodR9XQDSUm21yCkr6zBqiveYah8bt4xsWpHnJE7jL5VG3guMTKNPAwcF&quot;</span>; <span class="comment">//码表</span></span><br><span class="line"><span class="keyword">char</span> tr[<span class="number">124</span>]; <span class="comment">//反查码表</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> Xor = <span class="number">177451812</span>; <span class="comment">//固定异或值</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> add = <span class="number">8728348608</span>; <span class="comment">//固定加法值</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> s[] = &#123;<span class="number">11</span>, <span class="number">10</span>, <span class="number">3</span>, <span class="number">8</span>, <span class="number">4</span>, <span class="number">6</span>&#125;; <span class="comment">//位置编码表</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//初始化反查码表</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">tr_init</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">58</span>; i++)</span><br><span class="line">		tr[table[i]] = i;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> <span class="title">bv2av</span><span class="params">(<span class="keyword">char</span> bv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> r = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> av;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">6</span>; i++)</span><br><span class="line">		r += tr[bv[s[i]]] * (<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span>)<span class="built_in">pow</span>(<span class="number">58</span>, i);</span><br><span class="line">	av = (r - add) ^ Xor;</span><br><span class="line">	<span class="keyword">return</span> av;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">char</span>* <span class="title">av2bv</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> av)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">char</span>* result = (<span class="keyword">char</span>*)<span class="built_in">malloc</span>(<span class="number">13</span>);</span><br><span class="line">	<span class="built_in">strcpy</span>(result,<span class="string">&quot;BV1  4 1 7  &quot;</span>);</span><br><span class="line">	av = (av ^ Xor) + add;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">6</span>; i++)</span><br><span class="line">		result[s[i]] = table[(<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span>)(av / (<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span>)<span class="built_in">pow</span>(<span class="number">58</span>, i)) % <span class="number">58</span>];</span><br><span class="line">	<span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	tr_init();</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>,av2bv(<span class="number">170001</span>));</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%u\n&quot;</span>,bv2av(<span class="string">&quot;BV17x411w7KC&quot;</span>));</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">BV17x411w7KC</span><br><span class="line">170001</span><br></pre></td></tr></table></figure>
+                
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+<script src="/js/darkmode.js"></script>
+
+
+<script src="/js/live2d.js"></script>
+<script src="/js/waifu-tips.js"></script>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="waifu">
+  <div class="waifu-tips"></div>
+  <canvas id="live2d" class="live2d"></canvas>
+  <div class="waifu-tool">
+      <span class="fui-home"></span>
+      <span class="fui-chat"></span>
+      <span class="fui-eye"></span>
+      <span class="fui-user"></span>
+      <span class="fui-photo"></span>
+      <span class="fui-info-circle"></span>
+      <span class="fui-cross"></span>
+  </div>
+</div>
+<script type="text/javascript">
+  initModel("/live2d/waifu-tips.json")
+</script>
+
+
+
+
+
+</html>

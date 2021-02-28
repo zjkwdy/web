@@ -1,0 +1,445 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="baidu-site-verification" content="code-MHmXGGvymI" />
+    <link rel="stylesheet" type="text/css" href="/css/waifu.css"/>
+    <title>IMin Lab</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="IMin,"> 
+    <meta name="description" content="IMin一个憨批的博客,"> 
+    <meta name="author" content="IMin"> 
+    <link rel="alternative" href="atom.xml" title="IMin Lab" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+<link rel="stylesheet" href="/css/bilibili_iconfont.css">
+
+    
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+    
+<link rel="stylesheet" href="/css/bilibili_iconfont.css">
+
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+    
+<link rel="stylesheet" href="/css/waifu.css">
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">IMin Lab</span>
+    <div id="loader"></div>
+    <div id="single" class="page">
+    <div id="top">
+        <a class="iconfont icon-left image-icon" href="javascript:history.back()"></a>
+    </div>
+    <div class="section">
+        <div class="article">
+            <div class="main">
+                <div class="content">
+                
+                        <h1 id="全站广播"><a href="#全站广播" class="headerlink" title="全站广播"></a>全站广播</h1><p>可用的广播服务：</p>
+<ul>
+<li><a href="video_room.md">视频实时信息</a>√</li>
+</ul>
+<h2 id="获取广播服务器地址"><a href="#获取广播服务器地址" class="headerlink" title="获取广播服务器地址"></a>获取广播服务器地址</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="http://api.bilibili.com/x/web-interface/broadcast/servers">http://api.bilibili.com/x/web-interface/broadcast/servers</a> </p>
+</blockquote>
+<p><em>请求方式：GET</em></p>
+<p><strong>url参数：</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>类型</th>
+<th>内容</th>
+<th>必要性</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>platform</td>
+<td>str</td>
+<td>平台选择</td>
+<td>必要</td>
+<td>为web时输出域名<br />其他时输出ip</td>
+</tr>
+</tbody></table>
+<p><strong>json回复：</strong></p>
+<p>根对象：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>内容</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>code</td>
+<td>num</td>
+<td>返回值</td>
+<td>0：成功<br />-400：请求错误</td>
+</tr>
+<tr>
+<td>message</td>
+<td>str</td>
+<td>错误信息</td>
+<td>默认为0</td>
+</tr>
+<tr>
+<td>ttl</td>
+<td>num</td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td>obj</td>
+<td>信息本体</td>
+<td></td>
+</tr>
+</tbody></table>
+<p><code>data</code>对象：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>内容</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>domain</td>
+<td>str</td>
+<td>广播服务器url</td>
+<td></td>
+</tr>
+<tr>
+<td>tcp_port</td>
+<td>num</td>
+<td>tcp端口</td>
+<td></td>
+</tr>
+<tr>
+<td>ws_port</td>
+<td>num</td>
+<td>websocket端口</td>
+<td></td>
+</tr>
+<tr>
+<td>wss_port</td>
+<td>num</td>
+<td>websocket ssl端口</td>
+<td></td>
+</tr>
+<tr>
+<td>heartbeat</td>
+<td>num</td>
+<td>最大心跳包间隔时间</td>
+<td></td>
+</tr>
+<tr>
+<td>nodes</td>
+<td>array</td>
+<td>服务节点地址列表</td>
+<td></td>
+</tr>
+<tr>
+<td>backoff</td>
+<td>obj</td>
+<td>？？？</td>
+<td></td>
+</tr>
+<tr>
+<td>heartbeat_max</td>
+<td>num</td>
+<td>？？？</td>
+<td></td>
+</tr>
+</tbody></table>
+<p><code>data</code>中的<code>nodes</code>数组：</p>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>类型</th>
+<th>内容</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>str</td>
+<td>服务节点1</td>
+<td></td>
+</tr>
+<tr>
+<td>n</td>
+<td>str</td>
+<td>服务节点(n+1)</td>
+<td></td>
+</tr>
+<tr>
+<td>……</td>
+<td>str</td>
+<td>……</td>
+<td></td>
+</tr>
+</tbody></table>
+<p><code>data</code>中的<code>backoff</code>对象：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>内容</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>max_delay</td>
+<td>num</td>
+<td>？？？</td>
+<td></td>
+</tr>
+<tr>
+<td>base_delay</td>
+<td>num</td>
+<td>？？？</td>
+<td></td>
+</tr>
+<tr>
+<td>factor</td>
+<td>num</td>
+<td>？？？</td>
+<td></td>
+</tr>
+<tr>
+<td>jitter</td>
+<td>num</td>
+<td>？？？</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>示例：</p>
+<p>当<code>platform</code>=<code>web</code>时，不显示节点ip</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -G &#x27;http://api.bilibili.com/x/web-interface/broadcast/servers&#x27; \</span><br><span class="line">--data-urlencode &#x27;platform=web&#x27;</span><br></pre></td></tr></table></figure>
+<details>
+<summary>查看响应示例：</summary>
+
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="attr">&quot;code&quot;</span>: <span class="number">0</span>,</span><br><span class="line">	<span class="attr">&quot;message&quot;</span>: <span class="string">&quot;0&quot;</span>,</span><br><span class="line">	<span class="attr">&quot;ttl&quot;</span>: <span class="number">1</span>,</span><br><span class="line">	<span class="attr">&quot;data&quot;</span>: &#123;</span><br><span class="line">		<span class="attr">&quot;domain&quot;</span>: <span class="string">&quot;broadcast.chat.bilibili.com&quot;</span>,</span><br><span class="line">		<span class="attr">&quot;tcp_port&quot;</span>: <span class="number">7821</span>,</span><br><span class="line">		<span class="attr">&quot;ws_port&quot;</span>: <span class="number">7822</span>,</span><br><span class="line">		<span class="attr">&quot;wss_port&quot;</span>: <span class="number">7823</span>,</span><br><span class="line">		<span class="attr">&quot;heartbeat&quot;</span>: <span class="number">30</span>,</span><br><span class="line">		<span class="attr">&quot;nodes&quot;</span>: [<span class="string">&quot;broadcast.chat.bilibili.com&quot;</span>],</span><br><span class="line">		<span class="attr">&quot;backoff&quot;</span>: &#123;</span><br><span class="line">			<span class="attr">&quot;max_delay&quot;</span>: <span class="number">300</span>,</span><br><span class="line">			<span class="attr">&quot;base_delay&quot;</span>: <span class="number">3</span>,</span><br><span class="line">			<span class="attr">&quot;factor&quot;</span>: <span class="number">1.8</span>,</span><br><span class="line">			<span class="attr">&quot;jitter&quot;</span>: <span class="number">0.3</span></span><br><span class="line">		&#125;,</span><br><span class="line">		<span class="attr">&quot;heartbeat_max&quot;</span>: <span class="number">3</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</details>
+
+<p>当<code>platform</code>=其他时，显示节点ip</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -G &#x27;http://api.bilibili.com/x/web-interface/broadcast/servers&#x27; \</span><br><span class="line">--data-urlencode &#x27;platform=1&#x27;</span><br></pre></td></tr></table></figure>
+<details>
+<summary>查看响应示例：</summary>
+
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="attr">&quot;code&quot;</span>: <span class="number">0</span>,</span><br><span class="line">	<span class="attr">&quot;message&quot;</span>: <span class="string">&quot;0&quot;</span>,</span><br><span class="line">	<span class="attr">&quot;ttl&quot;</span>: <span class="number">1</span>,</span><br><span class="line">	<span class="attr">&quot;data&quot;</span>: &#123;</span><br><span class="line">		<span class="attr">&quot;domain&quot;</span>: <span class="string">&quot;broadcast.chat.bilibili.com&quot;</span>,</span><br><span class="line">		<span class="attr">&quot;tcp_port&quot;</span>: <span class="number">7821</span>,</span><br><span class="line">		<span class="attr">&quot;ws_port&quot;</span>: <span class="number">7822</span>,</span><br><span class="line">		<span class="attr">&quot;wss_port&quot;</span>: <span class="number">7823</span>,</span><br><span class="line">		<span class="attr">&quot;heartbeat&quot;</span>: <span class="number">30</span>,</span><br><span class="line">		<span class="attr">&quot;nodes&quot;</span>: [<span class="string">&quot;134.175.207.130&quot;</span>, <span class="string">&quot;120.92.150.90&quot;</span>, <span class="string">&quot;120.92.150.212&quot;</span>, <span class="string">&quot;192.144.173.136&quot;</span>, <span class="string">&quot;154.8.217.108&quot;</span>],</span><br><span class="line">		<span class="attr">&quot;backoff&quot;</span>: &#123;</span><br><span class="line">			<span class="attr">&quot;max_delay&quot;</span>: <span class="number">300</span>,</span><br><span class="line">			<span class="attr">&quot;base_delay&quot;</span>: <span class="number">3</span>,</span><br><span class="line">			<span class="attr">&quot;factor&quot;</span>: <span class="number">1.8</span>,</span><br><span class="line">			<span class="attr">&quot;jitter&quot;</span>: <span class="number">0.3</span></span><br><span class="line">		&#125;,</span><br><span class="line">		<span class="attr">&quot;heartbeat_max&quot;</span>: <span class="number">3</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</details>
+
+<h2 id="服务器数据包"><a href="#服务器数据包" class="headerlink" title="服务器数据包"></a>服务器数据包</h2><p>连接服务器分为三种方式，分别是ws wss tcp，数据包分为上行和下行</p>
+<p>单个数据包分为头部和正文</p>
+<p>其中上行的有认证包 心跳包，下行的有认证包回复 心跳包回复 普通包</p>
+<p>建立连接后超过30s内未发送认证包，或握手后30s内未发送心跳包，或发送了错误的认证包，都会被强制断开连接</p>
+<p>操作流程：</p>
+<p>1.发送认证包，等待接收认证回复</p>
+<p>2.确认握手成功后，每30s内发送心跳包，并立即接收心跳包回复</p>
+<p>3.空闲时间接收普通包</p>
+<h3 id="数据包结构"><a href="#数据包结构" class="headerlink" title="数据包结构"></a>数据包结构</h3><p>头部通用于上行和下行数据包</p>
+<p>头部格式：</p>
+<table>
+<thead>
+<tr>
+<th>偏移量</th>
+<th>长度（字节）</th>
+<th>类型</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0x00</td>
+<td>4</td>
+<td>uint32</td>
+<td>封包总大小（头部大小+正文大小）</td>
+</tr>
+<tr>
+<td>0x04</td>
+<td>2</td>
+<td>uint16</td>
+<td>头部大小（一般为0x0012，18字节）</td>
+</tr>
+<tr>
+<td>0x06</td>
+<td>2</td>
+<td>uint16</td>
+<td>协议版本，可取常数1</td>
+</tr>
+<tr>
+<td>0x08</td>
+<td>4</td>
+<td>uint32</td>
+<td>操作码（包类型）<br /><strong>见下表</strong></td>
+</tr>
+<tr>
+<td>0x0C</td>
+<td>4</td>
+<td>uint32</td>
+<td>sequence（请求次数），可取常数1<br />对于普通包恒为0</td>
+</tr>
+<tr>
+<td>0x10</td>
+<td>2</td>
+<td>uint16</td>
+<td>保留，一般为0</td>
+</tr>
+</tbody></table>
+<p>操作码：</p>
+<table>
+<thead>
+<tr>
+<th>代码</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2</td>
+<td>心跳</td>
+</tr>
+<tr>
+<td>3</td>
+<td>心跳回复</td>
+</tr>
+<tr>
+<td>7</td>
+<td>认证</td>
+</tr>
+<tr>
+<td>8</td>
+<td>认证回复</td>
+</tr>
+<tr>
+<td>1000</td>
+<td>实时弹幕</td>
+</tr>
+</tbody></table>
+<p><strong>示例：</strong></p>
+<p>以下为一个认证包示例，正文为文本<code>test</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">00000000  00 00 00 16 00 12 00 01  00 00 00 07 00 00 00 01  |................|</span><br><span class="line">00000010  00 00 74 65 73 74                                 |..test|</span><br></pre></td></tr></table></figure>
+
+
+                
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+<script src="/js/darkmode.js"></script>
+
+
+<script src="/js/live2d.js"></script>
+<script src="/js/waifu-tips.js"></script>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="waifu">
+  <div class="waifu-tips"></div>
+  <canvas id="live2d" class="live2d"></canvas>
+  <div class="waifu-tool">
+      <span class="fui-home"></span>
+      <span class="fui-chat"></span>
+      <span class="fui-eye"></span>
+      <span class="fui-user"></span>
+      <span class="fui-photo"></span>
+      <span class="fui-info-circle"></span>
+      <span class="fui-cross"></span>
+  </div>
+</div>
+<script type="text/javascript">
+  initModel("/live2d/waifu-tips.json")
+</script>
+
+
+
+
+
+</html>
